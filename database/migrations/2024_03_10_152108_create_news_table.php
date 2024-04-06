@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->string('foto')->nullable();
+            $table->string('title');
+            $table->string('description');
+            $table->unsignedInteger('views')->default(0); // Jumlah views
+            $table->string('last_viewed_ip')->nullable(); // IP terakhir yang mengakses berita
+            $table->string('category');
+            $table->string('author');
             $table->timestamps();
         });
     }

@@ -40,6 +40,12 @@ class NewsController extends Controller
         return Inertia::render('ViewBerita', ['viewBerita' => $news]);
     }
 
+
+    // form berita
+    public function formnews()
+    {
+        return Inertia::render('FormNews');
+    }
     public function addViews(Request $request)
     {
         $idBerita = $request->input('id_berita');
@@ -62,13 +68,9 @@ class NewsController extends Controller
 
         return response()->json(['message' => 'Berhasil']);
     }
+    // end form news
 
 
-    //tampil ke halaman tambahberita
-    public function formnews()
-    {
-        return Inertia::render('FormNews');
-    }
 
     // logika untuk menginsert berita ke database
     public function store(Request $request)

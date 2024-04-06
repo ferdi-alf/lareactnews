@@ -24,7 +24,7 @@ export default function Authenticated({ user, header, children }) {
                             <Link>Dashboard</Link>
                         </li>
                         <li>
-                            <Link >Update Berita</Link>
+                            <Link href={route('formnews')}>Update Berita</Link>
                         </li>
                         <li>
                             <Link>Berita Anda</Link>

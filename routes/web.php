@@ -13,6 +13,10 @@ Route::post('/news', [NewsController::class, 'store'])->middleware(['auth', 'ver
 Route::get('/dashboard', [NewsController::class, 'total'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/news', [NewsController::class, 'show'])->middleware(['auth', 'verified'])->name('my.news');
 
+// form news
+Route::get('form-news', [NewsController::class, 'formnews'])->name('formnews');
+Route::post('/add-view', [NewsController::class, 'addViews']);
+
 // pengeditan berita
 Route::get('/news/edit', [NewsController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit.news');
 Route::post('/news/update', [NewsController::class, 'update'])->middleware(['auth', 'verified'])->name('update.news');
@@ -23,9 +27,8 @@ Route::post('/news/delete/', [NewsController::class, 'delete'])->middleware(['au
 // view berita
 Route::get('berita/view/id/{id}', [NewsController::class, 'view'])
     ->name('view.berita');
-// ->middleware('increment.views');
-Route::post('/add-view', [NewsController::class, 'addViews']);
 
+// ->middleware('increment.views');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
