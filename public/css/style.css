@@ -1,0 +1,317 @@
+.text{
+    border: 1px solid black;
+}
+
+.p{
+    border:none;
+}
+.e {
+    height: 35px;
+    border-radius: 12px;
+    color: white;
+}
+.r {
+    background-color: crimson;
+    height: 35px;
+    border-radius: 12px;
+    color: white;
+}
+
+
+/* .imags{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.berita-lainnya{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin-left: 10px;
+}
+
+.cardsl{
+    display: flex;
+    width: 50%;
+    background-color: aliceblue;
+    box-shadow: 2px 3px;
+    border-radius: 12px;
+    height: auto;
+    height: 200px;
+}
+.ct{
+    font-size: 18px;
+    color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 5px;
+    font-weight: bold;
+}
+
+.cardsl figure {
+    width: 30%;
+    height: 100%;
+    overflow: hidden;
+    position: relative; /* Menambahkan properti position: relative; */
+}
+
+.cardsl figure img {
+    border-radius: 12px;
+    width: 100%; /* Mengubah nilai width menjadi 100% */
+    height: 100%; /* Menambahkan properti height: 100%; */
+    object-fit: cover; /* Menambahkan properti object-fit */
+    position: absolute; /* Menambahkan properti position: absolute; */
+    top: 0; /* Menambahkan properti top: 0; */
+    left: 0; /* Menambahkan properti left: 0; */
+}
+
+
+.carousel-item {
+    margin-top:6px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+    display: grid;
+    place-content: center; /* Menambahkan properti position: relative; */
+}
+
+
+.im{
+    border-radius: 12px;
+    width: 100%; /* Mengubah nilai width menjadi 100% */
+    height: 280px; /* Menambahkan properti height: 100%; */
+    object-fit: cover; /* Menambahkan properti object-fit */
+    
+}
+
+.main{
+    background-color: #f5f2f4;
+    /* backdrop-filter: blur(40px); */
+    /* -webkit-backdrop-filter: blur(40px); */
+}
+
+.index{
+    background: linear-gradient(to bottom right, #ef33dc, white, white);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+
+
+
+.bblr{
+    background: linear-gradient(135deg, rgba(104, 103, 103, 0.628), rgba(78, 77, 77, 0.148));
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: -8px 10px 32px 0 rgb(92, 91, 91);
+    width: 65%;
+}
+
+.bblr.lg{
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    width: 28%;
+    padding-bottom: 13px;
+}
+
+.bblr.lg p{
+    color: white;
+    font-weight: bold;
+    text-align: start;
+}
+
+.text-header{
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   margin-top: 10px;
+   margin-top:40px;
+   flex-wrap: wrap-reverse;
+}
+
+.text-header h1{
+    font-size: 50px;
+    color:#ef33dc ;
+    text-shadow: -1px -1px 0 white, 1px 1px 0 #e7008a;
+    font-weight: bold;
+}
+
+.text-header p{
+    font-size: 35px;
+    font-weight:bold;
+    text-shadow: -1px -1px 0 white, 1px 1px 0 #e7008a;
+
+}
+
+.text-header img{
+    width: 30%;
+}
+
+
+.cardsl.side{
+    width: 90%;
+    height: 110px;
+}
+
+.cd {
+    font-size: 17px;
+    color: black;
+}
+
+.cb{
+width: 70%;
+height: 90%;
+padding: 0 10px 0 0;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+}
+
+
+.news{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 12px;
+}
+
+.divider {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: white;
+    margin-bottom: 35px;
+  }
+
+  .divider p{
+    border: 2px solid #ef33dc;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .divider:before, .divider:after {
+    flex: 1;
+    content: '';
+    padding: 3px;
+    background-color: #ef33dc;
+    margin: 1px;
+  }
+
+
+.sidecontent {
+    overflow-y: auto;  
+    max-height: calc(100vh); 
+}
+
+.sidebar{
+    width:20%;
+}
+
+.lord {
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.sidecontent{
+    width: 80%;
+    height: 100%;
+}
+
+.box-sidebar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+    row-gap: 50px;
+    height: 80%;
+}
+
+.box-sidebar .image{
+    width: 80%;
+    border-radius: 12px;
+}
+
+.box-sidebar .image img{
+    width: 80%;
+}
+
+.box-link{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-link li{
+    padding: 5px;
+    border-bottom: 2px solid black;
+    width: 95%;
+    color:black;
+    font-weight: bold;
+    transition:2s;
+}
+
+.box-link li:first-child{
+    border-top: 2px solid black;
+}
+
+
+
+.cardw{
+    padding: 10px;
+    width: 35%;
+    height: 110px;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 10px;
+    color: white;
+    border-radius: 7px;
+}
+
+.cardw .box-icon {
+    width: 35%;
+    display:grid;
+    place-content:center;
+    color:white;
+}
+
+.cardw .textw{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+.cardw .textw p{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.cardw .box-icon .icon{
+    font-size: 40px;
+}
+
+.boxw{
+    height: 300px;
+}
