@@ -40,12 +40,6 @@ class NewsController extends Controller
         return Inertia::render('ViewBerita', ['viewBerita' => $news]);
     }
 
-
-    // form berita
-    public function formnews()
-    {
-        return Inertia::render('FormNews');
-    }
     public function addViews(Request $request)
     {
         $idBerita = $request->input('id_berita');
@@ -68,11 +62,51 @@ class NewsController extends Controller
 
         return response()->json(['message' => 'Berhasil']);
     }
-    // end form news
+    // end view
 
 
+    // // dashboard
+    // public function show(News $news)
+    // {
+    //     $myNews = $news::where('author', auth()->user()->name)->get();
 
-    // logika untuk menginsert berita ke database
+    //     $waktu = Carbon::now()->subHours(24);
+
+    //     $totalBerita = $news::where('author', auth()->user()->name)->count();
+    //     $totalBeritaHariIni = $news::where('author', auth()->user()->name)
+    //         ->where('created_at', '>', $waktu)->count();
+
+    //     $total = compact('totalBerita', 'totalBeritaHariIni');
+    //     return Inertia::render('Dashboard', [
+    //         'myNews' => $myNews,
+    //         'total' => $total
+    //     ]);
+    // }
+
+
+    // dashboard
+    public function total(News $news)
+    {
+        $waktu = Carbon::now()->subHours(24);
+
+        $totalBerita = $news::where('author', auth()->user()->name)->count();
+        $totalBeritaHariIni = $news::where('author', auth()->user()->name)
+            ->where('created_at', '>', $waktu)->count();
+        $total = compact('totalBerita', 'totalBeritaHariIni');
+
+        return Inertia::render('Dashboard', [
+            'total' => $total
+        ]);
+    }
+
+
+    // form berita
+    public function formnews()
+    {
+        return Inertia::render('FormNews');
+    }
+
+
     public function store(Request $request)
     {
         $validasiData = $request->validate([
@@ -103,38 +137,8 @@ class NewsController extends Controller
 
         return redirect()->back()->with('message', 'Berhasil Menambahkan Berita');
     }
+    // end form berita
 
-    // logika di controller untuk menampilkan berita dari user masukan
-    public function show(News $news)
-    {
-        $myNews = $news::where('author', auth()->user()->name)->get();
-
-        $waktu = Carbon::now()->subHours(24);
-
-        $totalBerita = $news::where('author', auth()->user()->name)->count();
-        $totalBeritaHariIni = $news::where('author', auth()->user()->name)
-            ->where('created_at', '>', $waktu)->count();
-
-        $total = compact('totalBerita', 'totalBeritaHariIni');
-        return Inertia::render('Dashboard', [
-            'myNews' => $myNews,
-            'total' => $total
-        ]);
-    }
-
-    public function total(News $news)
-    {
-        $waktu = Carbon::now()->subHours(24);
-
-        $totalBerita = $news::where('author', auth()->user()->name)->count();
-        $totalBeritaHariIni = $news::where('author', auth()->user()->name)
-            ->where('created_at', '>', $waktu)->count();
-        $total = compact('totalBerita', 'totalBeritaHariIni');
-
-        return Inertia::render('Dashboard', [
-            'total' => $total
-        ]);
-    }
 
     // logika untuk edit/update data
     public function edit(News $news, Request $request)
@@ -170,7 +174,6 @@ class NewsController extends Controller
 
         return redirect()->route('dashboard')->with('message', 'Update Berita Berhasil');
     }
-
     // end update
 
     // masuk ke sesi hapus data

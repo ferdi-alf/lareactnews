@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
@@ -6,9 +6,37 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import '../../../public/css/style.css'
 import Logo from '../../../public/images/logo-portal.png'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
+
+
+const TransisiHalaman = ({ children }) => {
+    const [previousPath, setPreviousPath] = useState(null);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (previousPath !== location.pathname) {
+            setPreviousPath(location.pathname);
+        }
+    }, [location, previousPath]);
+
+    return (
+        <TransitionGroup>
+            <CSSTransition key={previousPath} classNames="transisi" timeout={500}>
+                <div className="page">{children}</div>
+            </CSSTransition>
+        </TransitionGroup>
+    );
+};
+
+TransisiHalaman.propTypes = {
+    children: PropTypes.node.isRequired
+};
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+
 
     return (
         <div className=" bg-gray-100 lord">
@@ -21,7 +49,7 @@ export default function Authenticated({ user, header, children }) {
 
                     <ul className="box-link">
                         <li>
-                            <Link>Dashboard</Link>
+                            <Link href={route('dashboard')}>Dashboard</Link>
                         </li>
                         <li>
                             <Link href={route('formnews')}>Update Berita</Link>
@@ -145,7 +173,13 @@ export default function Authenticated({ user, header, children }) {
                         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
                     </header>
                 )}
-                <main>{children}</main>
+
+                <main>
+                    <TransisiHalaman>
+                        {children}
+                    </TransisiHalaman>
+                </main>
+
             </div>
             {/* end side content */}
         </div>

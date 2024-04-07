@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import DataDashboard from "@/Components/Dashboard/DataDashboard";
