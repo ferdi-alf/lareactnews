@@ -109,12 +109,21 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        $validasiData = $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2040',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'category' => 'required|string|max:255',
-        ]);
+        $validasiData = $request->validate(
+            [
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2040',
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'category' => 'required|string|max:255',
+            ],
+            [
+                'image.required' => 'Berita wajib memiliki gambar',
+                'image.mimes' => 'image hanya boleh berextensi jpeg,png,jpg,webp',
+                'title.required' => 'Title berita tidak boleh kosong',
+                'description.required' => "description tidak boleh kosong",
+                'category.required' => "category tidak boleh kosong" 
+            ]
+        );
 
         $authorName = Auth::user()->name;
 

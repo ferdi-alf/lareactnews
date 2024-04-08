@@ -315,3 +315,17 @@ justify-content: space-around;
 .boxw{
     height: 300px;
 }
+
+/* form news */
+#foto{
+    border: 1px solid black;
+}
+
+label{
+    color: black;
+    font-weight: bold;
+}
+
+.alert.alert-warning li{
+    list-style-type: disc;
+} 
