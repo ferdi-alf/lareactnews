@@ -106,7 +106,6 @@ class NewsController extends Controller
         return Inertia::render('FormNews');
     }
 
-
     public function store(Request $request)
     {
         $validasiData = $request->validate(
@@ -121,7 +120,7 @@ class NewsController extends Controller
                 'image.mimes' => 'image hanya boleh berextensi jpeg,png,jpg,webp',
                 'title.required' => 'Title berita tidak boleh kosong',
                 'description.required' => "description tidak boleh kosong",
-                'category.required' => "category tidak boleh kosong" 
+                'category.required' => "category tidak boleh kosong"
             ]
         );
 
@@ -148,6 +147,17 @@ class NewsController extends Controller
     }
     // end form berita
 
+    // masuk ke mynews
+    public function mynews(News $news)
+    {
+        $news = new NewsCollection($news::where('author', auth()->user()->name)
+            ->OrderByDesc('id')->paginate(10));
+
+        return Inertia::render('MyNews', [
+            'news' => $news
+        ]);
+    }
+    // end masuk ke mynews
 
     // logika untuk edit/update data
     public function edit(News $news, Request $request)
@@ -156,7 +166,6 @@ class NewsController extends Controller
             'myNews' => $news->find($request->id)
         ]);
     }
-    // mulai post update
     public function update(News $news, Request $request)
     {
         // Validasi data yang diterima dari front end

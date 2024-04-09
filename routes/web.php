@@ -6,12 +6,14 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 
+// index berita
 Route::get('/', [NewsController::class, 'index']);
 //increment view
 Route::post('/add-view', [NewsController::class, 'addViews']);
 // view berita
 Route::get('berita/view/id/{id}', [NewsController::class, 'view'])
     ->name('view.berita');
+// end index berita
 
 
 // dahsboard
@@ -21,6 +23,8 @@ Route::get('/news', [NewsController::class, 'show'])->middleware(['auth', 'verif
 Route::get('form-news', [NewsController::class, 'formnews'])->name('formnews');
 Route::post('/news', [NewsController::class, 'store'])->middleware(['auth', 'verified'])->name('create.news');
 
+Route::get('/mynews', [NewsController::class, 'mynews'])->middleware(['auth', 'verified'])->name('mynews');
+
 // pengeditan berita
 Route::get('/news/edit', [NewsController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit.news');
 Route::post('/news/update', [NewsController::class, 'update'])->middleware(['auth', 'verified'])->name('update.news');
@@ -29,7 +33,6 @@ Route::post('/news/update', [NewsController::class, 'update'])->middleware(['aut
 Route::post('/news/delete/', [NewsController::class, 'delete'])->middleware(['auth', 'verified'])->name('delete.news');
 
 
-// ->middleware('increment.views');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

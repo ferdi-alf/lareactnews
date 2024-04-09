@@ -329,3 +329,46 @@ label{
 .alert.alert-warning li{
     list-style-type: disc;
 } 
+input{
+color:black;
+width: 50%;
+}
+
+textarea{
+    height: 200px;
+    color:black
+}
+
+@media screen and (max-width:639px) {
+    .sidebar{
+        display: none;
+    }
+
+    .sidecontent {
+        width: 100%;
+    }
+
+    .boxw{
+        height: 600px;
+    }
+
+    .box-cardw{
+    display: flex;
+    flex-direction: column;
+    }
+
+    .cardw{
+        width: 100%;
+    }
+}
+
+/* mynews */
+.des{
+    width: 10px;
+    overflow-x: hidden;
+}
+@media screen and (max-width:450px){
+    input{
+        width: 100%;
+    }
+}

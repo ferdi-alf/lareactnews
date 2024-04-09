@@ -41,7 +41,7 @@ export default function Authenticated({ user, header, children }) {
     return (
         <div className=" bg-gray-100 lord">
             {/* sidebar */}
-            <div className="sidebar bg-gray-300">
+            <div className="sidebar  bg-gray-300">
                 <div className="box-sidebar">
                     <div className="image bg-slate-400">
                         <img src={Logo} alt="" />
@@ -55,7 +55,7 @@ export default function Authenticated({ user, header, children }) {
                             <Link href={route('formnews')}>Update Berita</Link>
                         </li>
                         <li>
-                            <Link>Berita Anda</Link>
+                            <Link href={route('mynews')}>Berita Saya</Link>
                         </li>
                         <li>
                             <Link>Chart data</Link>
@@ -154,13 +154,16 @@ export default function Authenticated({ user, header, children }) {
                         </div>
 
                         <div className="pt-4 pb-1 border-t border-gray-200">
-                            <div className="px-4">
+                            <div className="px-4 border-b-1 border-gray-400">
                                 <div className="font-medium text-base text-gray-800">{user.name}</div>
                                 <div className="font-medium text-sm text-gray-500">{user.email}</div>
                             </div>
 
                             <div className="mt-3 space-y-1">
                                 <ResponsiveNavLink href={route('profile.edit')}>Profile</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route('dashboard')}>Dashboard</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route('formnews')}>Update Berita</ResponsiveNavLink>
+                                <ResponsiveNavLink href={route('mynews')}>Berita saya</ResponsiveNavLink>
                                 <ResponsiveNavLink method="post" href={route('logout')} as="button">
                                     Log Out
                                 </ResponsiveNavLink>

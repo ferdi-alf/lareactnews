@@ -55,12 +55,6 @@ export default function FormNews(props) {
 
                 if (response.status === 'error') {
                     setErrors(response.errors);
-                } else {
-                    Swal.fire({
-                        icon: "succes",
-                        title: "Success!!",
-                        text: "Berita berhasil ditambahkan",
-                    });
                 }
             } catch (error) {
                 console.error("Error:", error);
@@ -94,30 +88,29 @@ export default function FormNews(props) {
                 {/* end pesan error */}
 
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="flex flex-col justify-center p-6 bg-white border-b border-gray-200">
+                    <div className="flex flex-col shadow-xl rounded-md justify-center p-6 bg-white border-b border-gray-200">
                         <label htmlFor="foto" >Foto berita</label>
-                        <input id='foto' type="file" onChange={handleImage} className="file-input file-input-bordered bg-white file-input-md w-96" />
+                        <input id='foto' type="file" onChange={handleImage} className="file-input file-input-bordered bg-white file-input-md " />
                     </div>
-
                 </div>
                 <div className="max-w-7xl mx-auto mt-6 sm:px-6 lg:px-8">
-                    <div className="flex flex-col justify-center p-6 bg-white border-b border-gray-200">
+                    <div className="flex flex-col shadow-xl rounded-md justify-center p-6 bg-white border-b border-gray-200">
                         <label htmlFor="title">Title</label>
-                        <input id='title' type="text" onChange={handleTitle} value={title} placeholder="judul" className="m-2 bg-white text w-96 " />
+                        <input id='title' type="text" onChange={handleTitle} value={title} placeholder="judul" className="m-2 bg-white text  " />
                     </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto mt-6 sm:px-6 lg:px-8">
-                    <div className="flex flex-col justify-center p-6 bg-white border-b border-gray-200">
+                <div className="max-w-7xl mx-auto  mt-6 sm:px-6 lg:px-8">
+                    <div className="flex flex-col shadow-xl rounded-md justify-center p-6 bg-white border-b border-gray-200">
                         <label htmlFor="description">Description</label>
                         <textarea id='desciption' onChange={handleDescription} value={description} className="m-2 bg-white text textarea textarea-bordered" placeholder=" masukan Description berita"></textarea>
                     </div>
                 </div>
 
-                <div className="max-w-7xl mx-auto mt-6 sm:px-6 lg:px-8">
-                    <div className="flex flex-col justify-center p-6 bg-white border-b border-gray-200">
+                <div className="max-w-7xl mx-auto rounded-md mt-6 sm:px-6 lg:px-8">
+                    <div className="flex flex-col shadow-xl justify-center p-6 bg-white border-b border-gray-200">
                         <label htmlFor="category">Category</label>
-                        <input id='category' type="text" onChange={handleCategory} value={category} placeholder="Category" className="m-2 text bg-white input input-bordered w-96 " />
+                        <input id='category' type="text" onChange={handleCategory} value={category} placeholder="Category" className="m-2 text bg-white input input-bordered " />
                     </div>
                 </div>
 
