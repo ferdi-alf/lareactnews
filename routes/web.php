@@ -1,10 +1,14 @@
 <?php
 
+
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\RedirectIfNotAdmin;
+use App\Http\Controllers\AuthenticatedAdminSessionController;
 
 // index berita
 Route::get('/', [NewsController::class, 'index']);
@@ -16,21 +20,32 @@ Route::get('berita/view/id/{id}', [NewsController::class, 'view'])
 // end index berita
 
 
-// dahsboard
-Route::get('/dashboard', [NewsController::class, 'total'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/news', [NewsController::class, 'show'])->middleware(['auth', 'verified'])->name('my.news');
-// form news
-Route::get('form-news', [NewsController::class, 'formnews'])->name('formnews');
-Route::post('/news', [NewsController::class, 'store'])->middleware(['auth', 'verified'])->name('create.news');
+Route::get('/login-admin', [AuthenticatedAdminSessionController::class, 'loginadmin'])->name('login.admin');
+Route::middleware([RedirectIfNotAdmin::class])->group(function () {
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+    // Definisikan rute-rute lainnya yang diakses oleh admin di sini
+});
 
-Route::get('/mynews', [NewsController::class, 'mynews'])->middleware(['auth', 'verified'])->name('mynews');
+// middleware user
+Route::middleware(['auth', 'verified'])->group(function () {
+    // dashboard
+    Route::get('/dashboard', [NewsController::class, 'total'])->name('dashboard');
+    Route::get('/news', [NewsController::class, 'show'])->name('my.news');
+    // form news
+    Route::get('form-news', [NewsController::class, 'formnews'])->name('formnews');
+    Route::post('/news', [NewsController::class, 'store'])->name('create.news');
 
-// pengeditan berita
-Route::get('/news/edit', [NewsController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit.news');
-Route::post('/news/update', [NewsController::class, 'update'])->middleware(['auth', 'verified'])->name('update.news');
+    Route::get('/mynews', [NewsController::class, 'mynews'])->name('mynews');
 
-// penghapusan berita
-Route::post('/news/delete/', [NewsController::class, 'delete'])->middleware(['auth', 'verified'])->name('delete.news');
+    // pengeditan berita
+    Route::get('/news/edit', [NewsController::class, 'edit'])->name('edit.news');
+    Route::post('/news/update', [NewsController::class, 'update'])->name('update.news');
+
+    // penghapusan berita
+    Route::post('/news/delete/', [NewsController::class, 'delete'])->name('delete.news');
+    // end dashboard
+});
+// end middleware admins
 
 
 Route::middleware('auth')->group(function () {
