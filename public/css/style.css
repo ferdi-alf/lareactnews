@@ -339,6 +339,193 @@ textarea{
     color:black
 }
 
+/* login admin */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    background-color: rgb(25, 20, 56);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid .container .icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(25, 20, 56);
+    width: 60px;
+    padding: 10px 5px 10px 5px;
+    border-radius: 50%;
+}
+
+.container-fluid .container .card {
+    width: 30%;
+    background-color: rgba(41, 51, 61, 0.502);
+    padding: 15px 10px 15px 10px;
+    row-gap: 15px;
+    height: 420px;
+    border-top: 5px solid rgba(187, 95, 249, 0.87);
+}
+
+.container-fluid .container .card .var {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid .container .card .mb-3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 2px solid #9400D3;
+    position: relative;
+}
+
+
+.container-fluid .container .card .mb-3 label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-80%);
+    pointer-events: none;
+    transition: .5s;
+    color: white;
+}
+
+.container-fluid .container .card .mb-3 input:-webkit-autofill,
+.container-fluid .container .card .mb-3 input:-webkit-autofill:hover,
+.container-fluid .container .card .mb-3 input:-webkit-autofill:focus,
+.container-fluid .container .card .mb-3 input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+    background-color: transparent !important;
+    color: white !important;
+    border: none;
+    
+}
+
+.container-fluid .container .card .mb-3 input:focus~label,
+.container-fluid .container .card .mb-3 input:valid:not(:placeholder-shown)~label {
+    top: -8px;
+    font-size: 12px;
+    outline: none;
+}
+
+.container-fluid .container .card .mb-3 input {
+    background: transparent !important;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 0 35px 0 5px;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+#password {
+    padding-right: 30px;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    cursor: pointer;
+    transform: translateY(-70%);
+    color: white;
+    font-size: 15px;
+}
+
+.container-fluid .container .card form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-fluid .container .card form #submit {
+    width: 60%;
+    background-image: linear-gradient(to right, #9400D3, #BA2BE3, #4B0082);
+    border: none;
+    padding: 5px 0 10px 5px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.container-fluid .container .card form #submit:hover {
+    box-shadow: 0px 0px 10px 7px #a13ecb;
+}
+
+
+@media screen and (max-width:950px) {
+    .container-fluid .container {
+        width: 100%;
+    }
+
+    .container-fluid .container .card {
+        width: 60%;
+        height: 450px;
+        row-gap: 30px;
+    }
+
+    .container-fluid .container .card form {
+        row-gap: 40px;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .container-fluid .container {
+        width: 100%;
+    }
+
+    .container-fluid .container .card {
+        width: 70%;
+        height: 450px;
+        row-gap: 30px;
+    }
+
+    .container-fluid .container .card form {
+        row-gap: 40px;
+    }
+}
+
+
+@media screen and (max-width:500px) {
+    .container-fluid .container {
+        width: 90%;
+    }
+
+    .container-fluid .container .card {
+        width: 90%;
+        height: 450px;
+        row-gap: 30px;
+    }
+
+    .container-fluid .container .card form {
+        row-gap: 40px;
+    }
+}
+/* end login mobil */
+
 @media screen and (max-width:639px) {
     .sidebar{
         display: none;

@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class RedirectIfNotAdmin
 {
@@ -17,10 +18,19 @@ class RedirectIfNotAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        // login pertama jika user belum login
         if (!Auth::guard('admin')->check()) {
-            return redirect()->route('login.admin');
+            return redirect()->route('login.admin')->withErrors(['Silakan login.']);
         }
 
-        return $next($request);
+        // logic kedua jika user login tanpa remember
+        if (Auth::guard('admin') && !Cookie::has('remember_me')) {
+            return redirect()->route('login.admin')->withErrors(['silahkan login kembali']);
+        }
+
+        // logic ketiga jika user telah meceklis remember_me
+        if (Auth::guard('admin') && Cookie::has('remember_me')) {
+            return $next($request);
+        }
     }
 }

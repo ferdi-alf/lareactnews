@@ -21,9 +21,10 @@ Route::get('berita/view/id/{id}', [NewsController::class, 'view'])
 
 
 Route::get('/login-admin', [AuthenticatedAdminSessionController::class, 'loginadmin'])->name('login.admin');
+Route::post('/loginadmin', [AuthenticatedAdminSessionController::class, 'postloginadmin']);
+
 Route::middleware([RedirectIfNotAdmin::class])->group(function () {
-    Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
-    // Definisikan rute-rute lainnya yang diakses oleh admin di sini
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin.dashboard');
 });
 
 // middleware user
