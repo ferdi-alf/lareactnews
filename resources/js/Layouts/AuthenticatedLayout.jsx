@@ -41,7 +41,7 @@ export default function Authenticated({ user, header, children }) {
     return (
         <div className=" bg-gray-100 lord">
             {/* sidebar */}
-            <div className="sidebar  bg-gray-300">
+            <div className="sidebar usr  bg-gray-300">
                 <div className="box-sidebar">
                     <div className="image bg-slate-400">
                         <img src={Logo} alt="" />

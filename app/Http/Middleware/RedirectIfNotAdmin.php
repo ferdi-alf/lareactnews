@@ -25,7 +25,7 @@ class RedirectIfNotAdmin
 
         // logic kedua jika user login tanpa remember
         if (Auth::guard('admin') && !Cookie::has('remember_me')) {
-            return redirect()->route('login.admin')->withErrors(['silahkan login kembali']);
+            return $next($request);
         }
 
         // logic ketiga jika user telah meceklis remember_me

@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 .text{
     border: 1px solid black;
 }
@@ -527,7 +530,7 @@ textarea{
 /* end login mobil */
 
 @media screen and (max-width:639px) {
-    .sidebar{
+    .sidebar.usr{
         display: none;
     }
 
@@ -559,3 +562,278 @@ textarea{
         width: 100%;
     }
 }
+
+
+/* admin */
+.mother{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.container-sidebar{
+    display: flex;
+    flex-wrap:nowrap;
+    align-items: start;
+    justify-content: start;
+}
+
+.sidebar.ad {
+    transition: transform 0.3s ease; /* Animasi transisi ketika transform diubah */
+    transform: translateX(-100%); /* Sidebar akan disembunyikan di luar layar pada awalnya */
+    width: 0;
+    position: absolute;
+}
+
+.sidebar.ad.active {
+    transform: translateX(0); /* Menggeser sidebar ke posisi 0 saat aktif */
+    width: 20%;
+    height: 550px;
+    z-index: 800;
+}
+
+.mother .sidebar .card-sidebar{
+    transition: transform 0.3s ease; /* Animasi transisi ketika transform diubah */
+    transform: translateX(-100%); 
+    display: none;
+}
+.mother .sidebar.active .card-sidebar{
+    background-color: rgb(24, 24, 24);
+    padding: 5px 10px 5px 10px;
+    display: block;
+    transform: translateX(0);
+    height: 100%;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+        width: 8px; /* Lebar scrollbar */
+    }
+}
+
+.mother .sidebar.active .card-sidebar::-webkit-scrollbar {
+    width: 8px; /* Lebar scrollbar */
+}
+
+.mother .sidebar.active .card-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Warna latar belakang track */
+}
+
+.mother .sidebar.active .card-sidebar::-webkit-scrollbar-thumb {
+    background: #888; /* Warna thumb */
+    border-radius: 4px; /* Rounding untuk thumb */
+}
+
+.mother .sidebar.active .card-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Warna thumb saat di hover */
+}
+
+.mother .sidebar .card-fto{
+    display: flex;
+    flex-wrap: nowrap;
+    font-family: "Ubuntu", sans-serif;
+     font-weight: 600;
+     font-size: 12px;
+     column-gap: 12px;
+     align-items: center;
+}
+
+.mother .sidebar .card-fto .foto{
+    border-radius: 10px;
+    background-color: #a13ecb;
+    width: 22%;
+}
+
+.mother .sidebar .card-fto .foto img{
+    border-radius: 9px;
+}
+
+.icons{
+    font-size: 18px;
+}
+
+.search{
+    width: 100%;
+    padding: 7px;
+    margin-top: 15px;
+}
+
+.search .box-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+
+.search .box-search input{
+    background-color: transparent;
+    width: 100%;
+    border-radius: 8px;
+    color: white;
+}
+
+.hasil{
+    background-color: rgb(24, 24, 24);
+    width: 170px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 6px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 123px;
+    font-weight: 600;
+}
+
+.hasil p {
+    color: rgb(0, 157, 255);
+    font-weight: 200;
+}
+
+.hasil:hover{
+    background-color: rgb(57, 55, 55);
+}
+
+.hero-bar {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-top: 40px;
+    padding: 10px;
+}
+
+.hero-bar .route{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-family: "Ubuntu", sans-serif;
+     font-weight: 600;
+     column-gap: 12px;
+     color: white;
+}
+
+.navigasi{
+    margin-top: 30px;
+    border-top: 1px solid gray;
+}
+
+.navigasi .route-nav{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+.navigasi .route-nav .nav{
+    display:flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 600;
+    color: white;
+    column-gap: 12px;
+    width: 100%;
+    padding:5px;
+    border-radius:8px;
+}
+
+.navigasi .route-nav .nav:hover{
+    background-color:gray;
+}
+
+
+.navigasi .route-nav .drop-nav{
+    width: 88%;
+    margin-left:12px;
+    padding:9px 5px 5px 5px;
+}
+
+.navigasi .route-nav .drop-nav .li{
+    display:flex;
+    flex-wrap:nowrap;
+    column-gap:12px;
+    font-family:"Ubuntu", sans-serif;
+    color: white;
+    font-size:17px;
+    row-gap:19px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition:0.4s;
+    padding: 5px;
+    align-items: center;
+    animation-name: dropdownAnimation;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes dropdownAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.navigasi .route-nav .drop-nav .li:hover{
+    background-color: gray;
+}
+
+
+.sosmed{
+    margin-top: 11px;
+}
+
+.sosmed .box-sosmed{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.icons.sos{
+    color: white;
+    font-size: 25px;
+}
+
+.navbar{
+    background-color: #9400D3;
+    width: 100%;
+    height: 100%;
+}
+
+.content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+.content.active .cont{
+    transition: 0.3s ; 
+    transform: transform 0.3s;
+    width: 80%;
+}
+
+.cont{
+    transition: 0.2s ; 
+    width: 100%;
+}
+
+
+.icon{
+   background-color: #ffff;
+   width: 100%;
+   border-bottom: 1px solid grey;
+   height: 35px;
+}
+.icon .box-icon{
+    font-size: 21px;
+    text-align: start;
+    color: gray;
+    padding: 5px 0 5px 10px;
+}
+
+.content .box-content{
+    overflow-y: auto;
+}
+/* end admin */

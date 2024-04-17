@@ -1,0 +1,151 @@
+import { Head, Link } from '@inertiajs/react';
+import '../../../public/css/style.css'
+import React, { useState } from 'react'
+import Logo from '../../../public/images/360_F_475009987_zwsk4c77x3cTpcI3W1C1LU4pOSyPKaqi (1).jpg'
+import { faList, faGear, faHouse, faNewspaper, faUserSecret, faUser, faAngleDown, faAngleRight, faSatelliteDish, faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+export default function AuthenticatedAdmin({ children }) {
+
+
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [showSidebar, setShowSidebar] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+
+    const routes = [
+        { name: 'Dashboard', link: '/admin' },
+        { name: 'Admin', link: '/data-admin' },
+        { name: 'User', link: '/data-user' },
+        { name: 'Panding News', link: '/panding-news' },
+        { name: 'News Controller', link: '/newscontroller' },
+        { name: 'News Insert', link: '/insert-news' },
+        { name: 'Settings', link: '/settings' }
+    ]
+    console.log("route: ", routes);
+
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+    }
+
+    const filteredRoutes = routes.filter(route =>
+        route.name.toLowerCase().includes(searchValue.toLowerCase())
+    )
+
+    return (
+        <>
+            <div className="mother w-full h-full bg-black">
+                {/* sidebar */}
+                <div className={`sidebar ad ${showSidebar ? 'active' : ''}`}>
+                    <div className="card-sidebar">
+                        {/* header sidebar*/}
+                        <div className="card-fto">
+                            <div className="foto">
+                                <img src={Logo} alt="logo" />
+                            </div>
+                            Admin
+                            <br />
+                            admin@gmail.com
+                        </div>
+                        {/* end header sidebar*/}
+                        <div className="search">
+                            <div className="box-search flex flex-col">
+                                <input
+                                    type="search"
+                                    name="search"
+                                    id="search"
+                                    value={searchValue}
+                                    onChange={handleChange}
+                                    placeholder='Search route...' />
+                                {searchValue && (
+                                    filteredRoutes.map(route => (
+                                        <div className="hasil" key={route.link}>
+                                            <Link href={route.link}>
+                                                {route.name}
+                                                <br />
+                                                <p>{route.link}</p>
+                                            </Link>
+                                        </div>
+                                    ))
+                                )}
+                                {!filteredRoutes.length && (
+                                    <div className='hasil'>Not Found...</div>
+                                )}
+                            </div>
+                        </div>
+                        <div className="hero-bar">
+                            <ul className="route">
+                                <FontAwesomeIcon icon={faHouse} style={{ fontSize: "16px" }} />
+                                <li >
+                                    <Link>Dashboard</Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="navigasi">
+                            <ul className='route-nav'>
+                                <li className="nav on" onClick={() => setShowDropdown(!showDropdown)} >
+                                    Auth
+                                    <FontAwesomeIcon icon={showDropdown ? faAngleDown : faAngleRight} />
+                                </li>
+                                {showDropdown && (
+                                    <ul className='drop-nav'>
+                                        <Link className='li'>
+                                            <FontAwesomeIcon icon={faUserSecret} />
+                                            Admin
+                                        </Link>
+                                        <Link className='li'>
+                                            <FontAwesomeIcon icon={faUser} />
+                                            User
+                                        </Link>
+                                    </ul>
+                                )}
+
+                                <div className='text-start w-full mt-3' style={{ fontWeight: "400", fontFamily: "Ubuntu, sans-serif" }}>News</div>
+                                <Link className="nav">
+                                    <FontAwesomeIcon icon={faNewspaper} className='icons' />
+                                    Panding News
+                                </Link>
+                                <Link className="nav" style={{ marginTop: "4px" }}>
+                                    <FontAwesomeIcon icon={faSatelliteDish} className='icons' />
+                                    News Controller
+                                </Link>
+                                <Link className="nav" style={{ marginTop: "4px" }}>
+                                    <FontAwesomeIcon icon={faArrowUpFromBracket} className='icons' />
+                                    News Insert
+                                </Link>
+                                <div className='text-start w-full mt-3' style={{ fontWeight: "400", fontFamily: "Ubuntu, sans-serif" }}>Account</div>
+                                <Link className="nav" style={{ marginTop: "4px" }}>
+                                    <FontAwesomeIcon icon={faGear} className='icons' />
+                                    Settings
+                                </Link>
+                            </ul>
+
+                            <div className="sosmed w-full ">
+                                <div className="box-sosmed w-full flex flex-nowrap justify-evenly">
+                                    <Link style={{ textShadow: '2px 3px 13px white' }}><FontAwesomeIcon icon={faGithub} className='icons sos' /></Link>
+                                    <Link ><FontAwesomeIcon icon={faInstagram} className='icons sos' /></Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {/* end sidebar */}
+                <div className={`content ${showSidebar ? 'active' : ''} bg-gray-100`}>
+                    <div className="cont">
+                        <div className="icon" onClick={() => setShowSidebar(!showSidebar)}>
+                            <div className="box-icon">
+                                <FontAwesomeIcon icon={faList} />
+                            </div>
+                        </div>
+                        <div className="box-content">
+                            {children}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
