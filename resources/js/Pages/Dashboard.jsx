@@ -17,14 +17,11 @@ export default function Dashboard(props) {
             <Head title="Dashboard" />
 
             <div className="py-12 h-full">
-
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex flex-col justify-center boxw p-6 bg-white border-b border-gray-200">
                         <DataDashboard total={props.total} />
                     </div>
                 </div>
-
-
             </div>
 
         </ AuthenticatedLayout >

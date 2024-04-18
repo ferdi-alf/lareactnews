@@ -34,7 +34,7 @@ export default function AuthenticatedAdmin({ children }) {
 
     return (
         <>
-            <div className="mother w-full h-full bg-black">
+            <div className="mother w-full h-full">
                 {/* sidebar */}
                 <div className={`sidebar ad ${showSidebar ? 'active' : ''}`}>
                     <div className="card-sidebar">
@@ -121,25 +121,30 @@ export default function AuthenticatedAdmin({ children }) {
                                 </Link>
                             </ul>
 
-                            <div className="sosmed w-full ">
-                                <div className="box-sosmed w-full flex flex-nowrap justify-evenly">
-                                    <Link style={{ textShadow: '2px 3px 13px white' }}><FontAwesomeIcon icon={faGithub} className='icons sos' /></Link>
-                                    <Link ><FontAwesomeIcon icon={faInstagram} className='icons sos' /></Link>
-                                </div>
-                            </div>
                         </div>
+                    </div>
+                    <div className={`box-icont ${!showSidebar ? 'hidden' : ''}`} onClick={() => setShowSidebar(!showSidebar)}>
+                        <FontAwesomeIcon icon={faList} />
                     </div>
                 </div>
 
 
                 {/* end sidebar */}
-                <div className={`content ${showSidebar ? 'active' : ''} bg-gray-100`}>
+                <div className={`content ${showSidebar ? 'active' : ''} bg-gray-200`}>
                     <div className="cont">
                         <div className="icon" onClick={() => setShowSidebar(!showSidebar)}>
-                            <div className="box-icon">
+                            <div className={`box-icon ${showSidebar ? 'hidden' : ''}`}>
                                 <FontAwesomeIcon icon={faList} />
                             </div>
+
+                            <div className={`logo-sos ${showSidebar ? 're' : ''}`}>
+                                <div className="box-logo">
+                                    <FontAwesomeIcon icon={faGithub} />
+                                    <FontAwesomeIcon icon={faInstagram} />
+                                </div>
+                            </div>
                         </div>
+
                         <div className="box-content">
                             {children}
                         </div>

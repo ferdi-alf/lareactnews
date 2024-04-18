@@ -589,6 +589,7 @@ textarea{
     width: 20%;
     height: 550px;
     z-index: 800;
+    height: 100%;
 }
 
 .mother .sidebar .card-sidebar{
@@ -779,23 +780,7 @@ textarea{
     background-color: gray;
 }
 
-
-.sosmed{
-    margin-top: 11px;
-}
-
-.sosmed .box-sosmed{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.icons.sos{
-    color: white;
-    font-size: 25px;
-}
-
 .navbar{
-    background-color: #9400D3;
     width: 100%;
     height: 100%;
 }
@@ -805,13 +790,15 @@ textarea{
     display: flex;
     flex-direction: column;
     align-items: end;
+    height: 100%;
 }
 
-
 .content.active .cont{
+    overflow-y: auto;
     transition: 0.3s ; 
     transform: transform 0.3s;
     width: 80%;
+    height: 550px;
 }
 
 .cont{
@@ -821,19 +808,202 @@ textarea{
 
 
 .icon{
-   background-color: #ffff;
+   background-color: #f1f1f1;
    width: 100%;
    border-bottom: 1px solid grey;
-   height: 35px;
+   height: 40px;
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: space-between;
 }
 .icon .box-icon{
     font-size: 21px;
     text-align: start;
-    color: gray;
+    color: rgb(84, 84, 84);
     padding: 5px 0 5px 10px;
+}
+
+.box-icont{
+    font-size: 21px;
+    width: 30px;
+    display:grid;
+    place-content: center;
+    position: absolute;
+    top: 4px;
+    right: -28px;
+    background-color: rgb(24, 24, 24);
+    padding: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.box-icont.hidden {
+    display: none;
+}
+
+.icon .logo-sos{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon .logo-sos.re{
+    width: 100%;
+    justify-content: end;
+}
+
+.icon .logo-sos .box-logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    color: rgb(84, 84, 84);
+    width: 65%;
+}
+
+
+.icon .logo-sos.re .box-logo{
+    justify-content: space-around;
+    width: 10%;
 }
 
 .content .box-content{
     overflow-y: auto;
+}
+
+.box-cardb {
+    width: 100%; /* Lebar pembungkus sesuai dengan lebar layar */
+    padding: 10px; /* Atur padding sesuai kebutuhan */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px; /* Atur jarak antara .cardb */
+}
+
+.box-cardb .cardb{
+    background-color: #f1f1f1;
+}
+
+
+.cardb{
+    padding: 10px;
+    height: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 10px;
+    color: white;
+    border-radius: 7px;
+    margin-top: 20px;
+    width: calc(23%); 
+    margin-bottom: 10px; 
+}
+
+@media (max-width: 1096px) {
+    .content.active .cont{
+        height: 707px;
+    }
+
+    .cardb {
+        width: 40%; /* Saat layar mengecil, .cardb akan menjadi full width */
+    }
+}
+
+@media (max-width: 655px) {
+    .box-cardb{
+        justify-content: center;
+    }
+
+    .cardb {
+        width: 80%; /* Saat layar mengecil, .cardb akan menjadi full width */
+    }
+}
+
+.cardb{
+    background-color: #dddddd;
+
+}
+
+.cardb .box-icon {
+    width: 35%;
+    display:grid;
+    place-content:center;
+    color:white;
+    border-radius: 4px;
+}
+
+.cardb .box-icon .icon{
+    background: none;
+}
+
+.cardb .textw{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-wrap: nowrap;
+    width: 80%;
+    color: #555;
+}
+.cardb .textw p{
+    font-size: 23px;
+    font-weight: bold;
+    color: #555;
+}
+
+.cardb .box-icon .icon{
+    font-size: 40px;
+}
+
+@media (max-width:882px) {
+    .content.active .cont{
+        width: 76%;
+        height: 700px;
+
+    }
+    .sidebar.ad.active{
+        width: 200px;
+        height: 100%;
+    }
+}
+
+@media (max-width:750px) {
+    .content.active .cont{
+        width: 74%;
+
+    }
+    .sidebar.ad.active{
+        width: 200px;
+        height: 100%;
+    }
+}
+
+@media (max-width:655px) {
+    .content.active .cont{
+        width: 70%;
+    }
+    .sidebar.ad.active{
+        width: 200px;
+        height: 100%;
+    }
+
+    .icon .logo-sos{
+        width: 100px;
+    }
+
+    .icon .logo-sos.re .box-logo{
+        width: 100px;
+    }
+}
+
+@media (max-width:390px){
+    .content.active .cont{
+        height: 660px;
+    }
+
+    .sidebar.sidebar.ad.active{
+        height: 100%;
+    }
 }
 /* end admin */
