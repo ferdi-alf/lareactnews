@@ -24,24 +24,27 @@ const isNews = (news) => {
                     <figure>
                         <img src={`/storage/images/${data.foto}`} alt="Shoes" />
                     </figure>
-
-                    <div className="card-body">
-                        <h2 className="ct text-end">
-                            {data.title}
-                            <div className="badge badge-secondary">NEW</div>
-                        </h2>
-                        <p className="text-end">{data.description}</p>
-                        <div className="card-actions justify-end">
-                            <div className='row-5'>
+                    <div className="cardD">
+                        <div className="title">
+                            <div className="titleT ">Lima Dampak Kucuran Dana Baru 95 Miliar AS dari AS untuk Ukraina, Israel dan Taiwan</div>
+                            <div className="badge view ">
                                 <FontAwesomeIcon icon={faEye} />
-                                <span className="ml-2">{data.views} views</span>
+                                12
                             </div>
-                            <div className="badge badge-secondary">{data.category}</div>
-                            <div className="badge badge-outline">{data.author}</div>
+                        </div>
+                        <div className="description">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ipsam ut atque rerum aut facere quos labore, animi numquam reiciendis.
+                        </div>
+                        <div className="author">
+                            <div className="category">
+                                <div className="carbon">16 jam yang lalu</div>
+                            </div>
+                            <div className="badge name">Ferdi</div>
+                            <div className="badge badge-secondary">Category</div>
                         </div>
                     </div>
-                </Link>
-            </div>
+                </Link >
+            </div >
         )
     })
 }

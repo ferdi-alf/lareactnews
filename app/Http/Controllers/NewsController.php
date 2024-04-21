@@ -65,25 +65,6 @@ class NewsController extends Controller
     // end view
 
 
-    // // dashboard
-    // public function show(News $news)
-    // {
-    //     $myNews = $news::where('author', auth()->user()->name)->get();
-
-    //     $waktu = Carbon::now()->subHours(24);
-
-    //     $totalBerita = $news::where('author', auth()->user()->name)->count();
-    //     $totalBeritaHariIni = $news::where('author', auth()->user()->name)
-    //         ->where('created_at', '>', $waktu)->count();
-
-    //     $total = compact('totalBerita', 'totalBeritaHariIni');
-    //     return Inertia::render('Dashboard', [
-    //         'myNews' => $myNews,
-    //         'total' => $total
-    //     ]);
-    // }
-
-
     // dashboard
     public function total(News $news)
     {
@@ -105,47 +86,7 @@ class NewsController extends Controller
     {
         return Inertia::render('FormNews');
     }
-
-    public function store(Request $request)
-    {
-        $validasiData = $request->validate(
-            [
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2040',
-                'title' => 'required|string|max:255',
-                'description' => 'required|string',
-                'category' => 'required|string|max:255',
-            ],
-            [
-                'image.required' => 'Berita wajib memiliki gambar',
-                'image.mimes' => 'image hanya boleh berextensi jpeg,png,jpg,webp',
-                'title.required' => 'Title berita tidak boleh kosong',
-                'description.required' => "description tidak boleh kosong",
-                'category.required' => "category tidak boleh kosong"
-            ]
-        );
-
-        $authorName = Auth::user()->name;
-
-        $news = new News();
-        $news->title = $validasiData['title'];
-        $news->description = $validasiData['description'];
-        $news->category = $validasiData['category'];
-        $news->author = $authorName;
-
-        if ($request->has('image')) {
-            $image = $request->file('image');
-
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/images/', $name);
-
-            $news->foto = $name;
-        }
-
-        $news->save();
-
-        return redirect()->back()->with('message', 'Berhasil Menambahkan Berita');
-    }
-    // end form berita
+    // end masuk ke form berita
 
     // masuk ke mynews
     public function mynews(News $news)

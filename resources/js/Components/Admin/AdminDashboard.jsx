@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
+import { faNewspaper, faUserSecret, faUser } from '@fortawesome/free-solid-svg-icons';
 import '../../../../public/css/style.css'
 
-const AdminDashboard = () => {
+
+
+const AdminDashboard = ({ data }) => {
     return (
         <div className=" box-cardb ">
             <div className="cardb mb-6">
@@ -11,7 +13,7 @@ const AdminDashboard = () => {
                 </div>
                 <div className="textw ">
                     Bertia Pending
-                    <p>123</p>
+                    <p>{data.pendingNews}</p>
                 </div>
             </div>
 
@@ -21,25 +23,25 @@ const AdminDashboard = () => {
                 </div>
                 <div className="textw">
                     Total Berita
-                    <p>1234</p>
+                    <p>{data.totalBerita}</p>
                 </div>
             </div>
             <div className="cardb">
-                <div className="box-icon bg-sky-600">
-                    <FontAwesomeIcon icon={faNewspaper} className="icon" />
+                <div className="box-icon bg-red-600">
+                    <FontAwesomeIcon icon={faUserSecret} className="icon" />
                 </div>
                 <div className="textw">
-                    Total admin
-                    <p>1234</p>
+                    Total Admin
+                    <p>{data.totalAdmin}</p>
                 </div>
             </div>
             <div className="cardb">
-                <div className="box-icon bg-sky-600">
-                    <FontAwesomeIcon icon={faNewspaper} className="icon" />
+                <div className="box-icon bg-purple-600">
+                    <FontAwesomeIcon icon={faUser} className="icon" />
                 </div>
                 <div className="textw">
                     Total User
-                    <p>1234</p>
+                    <p>{data.totalUser}</p>
                 </div>
             </div>
         </div>

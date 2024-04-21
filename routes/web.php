@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RedirectIfNotAdmin;
 use App\Http\Controllers\AuthenticatedAdminSessionController;
+use App\Http\Controllers\PendingNewsController;
 
 // index berita
 Route::get('/', [NewsController::class, 'index']);
@@ -23,8 +24,9 @@ Route::get('berita/view/id/{id}', [NewsController::class, 'view'])
 Route::get('/login-admin', [AuthenticatedAdminSessionController::class, 'loginadmin'])->name('login.admin');
 Route::post('/loginadmin', [AuthenticatedAdminSessionController::class, 'postloginadmin']);
 
-Route::middleware([RedirectIfNotAdmin::class])->group(function () {
+Route::middleware('auth.admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/pending-news', [PendingNewsController::class, 'pendingNews'])->name('pending.news');
 });
 
 // middleware user
@@ -34,7 +36,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/news', [NewsController::class, 'show'])->name('my.news');
     // form news
     Route::get('form-news', [NewsController::class, 'formnews'])->name('formnews');
-    Route::post('/news', [NewsController::class, 'store'])->name('create.news');
+    Route::post('/news', [PendingNewsController::class, 'store'])->name('create.news');
 
     Route::get('/mynews', [NewsController::class, 'mynews'])->name('mynews');
 

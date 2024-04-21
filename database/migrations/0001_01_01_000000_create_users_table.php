@@ -46,6 +46,18 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('pending_news', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->string('user_name');
+            $table->string('user_email');
+            $table->string('title_news');
+            $table->text('description_news');
+            $table->string('category');
+            $table->string('foto')->nullable(); // Kolom untuk menyimpan nama file gambar
+            $table->timestamps();
+        });
     }
 
     /**

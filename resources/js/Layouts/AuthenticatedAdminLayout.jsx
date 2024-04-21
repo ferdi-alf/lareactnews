@@ -6,7 +6,7 @@ import { faList, faGear, faHouse, faNewspaper, faUserSecret, faUser, faAngleDown
 import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function AuthenticatedAdmin({ children }) {
+export default function AuthenticatedAdmin({ admin, children }) {
 
 
     const [showDropdown, setShowDropdown] = useState(false);
@@ -21,8 +21,7 @@ export default function AuthenticatedAdmin({ children }) {
         { name: 'News Controller', link: '/newscontroller' },
         { name: 'News Insert', link: '/insert-news' },
         { name: 'Settings', link: '/settings' }
-    ]
-    console.log("route: ", routes);
+    ];
 
     const handleChange = (e) => {
         setSearchValue(e.target.value);
@@ -43,11 +42,11 @@ export default function AuthenticatedAdmin({ children }) {
                             <div className="foto">
                                 <img src={Logo} alt="logo" />
                             </div>
-                            Admin
+                            {admin.name}
                             <br />
-                            admin@gmail.com
+                            {admin.email}
                         </div>
-                        {/* end header sidebar*/}
+                        end header sidebar
                         <div className="search">
                             <div className="box-search flex flex-col">
                                 <input
@@ -77,7 +76,7 @@ export default function AuthenticatedAdmin({ children }) {
                             <ul className="route">
                                 <FontAwesomeIcon icon={faHouse} style={{ fontSize: "16px" }} />
                                 <li >
-                                    <Link>Dashboard</Link>
+                                    <Link href={route('admin.dashboard')}>Dashboard</Link>
                                 </li>
                             </ul>
                         </div>
@@ -102,7 +101,7 @@ export default function AuthenticatedAdmin({ children }) {
                                 )}
 
                                 <div className='text-start w-full mt-3' style={{ fontWeight: "400", fontFamily: "Ubuntu, sans-serif" }}>News</div>
-                                <Link className="nav">
+                                <Link className="nav" href={route('pending.news')}>
                                     <FontAwesomeIcon icon={faNewspaper} className='icons' />
                                     Panding News
                                 </Link>
@@ -132,8 +131,8 @@ export default function AuthenticatedAdmin({ children }) {
                 {/* end sidebar */}
                 <div className={`content ${showSidebar ? 'active' : ''} bg-gray-200`}>
                     <div className="cont">
-                        <div className="icon" onClick={() => setShowSidebar(!showSidebar)}>
-                            <div className={`box-icon ${showSidebar ? 'hidden' : ''}`}>
+                        <div className="icon">
+                            <div className={`box-icon ${showSidebar ? 'hidden' : ''}`} onClick={() => setShowSidebar(!showSidebar)}>
                                 <FontAwesomeIcon icon={faList} />
                             </div>
 

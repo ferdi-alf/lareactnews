@@ -38,22 +38,14 @@
 
 .cardsl{
     display: flex;
-    width: 50%;
+    width: 35%;
     background-color: aliceblue;
     box-shadow: 2px 3px;
     border-radius: 12px;
     height: auto;
-    height: 200px;
+    height: 130px;
 }
-.ct{
-    font-size: 18px;
-    color: grey;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    column-gap: 5px;
-    font-weight: bold;
-}
+
 
 .cardsl figure {
     width: 30%;
@@ -72,6 +64,77 @@
     left: 0; /* Menambahkan properti left: 0; */
 }
 
+.cardD{
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    width: 75%;
+    flex-direction: column;
+}
+
+.cardD .title{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cardD .title .titleT{
+    color: rgb(2, 112, 255);
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    width: 75%;
+    display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardD .title .view{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    background: transparent;
+    color: #555;
+    border: 1px solid #555;
+}
+
+.cardD .title .titleT:hover{
+    text-decoration: underline;
+}
+
+.cardD .description{
+    width: 83%;
+    color: #555;
+    font-size: 13px;
+    overflow: hidden;
+    display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+.cardD  .author{
+    display:flex;
+    width: 95%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cardD  .author .name{
+    background: transparent;
+    color: #555;
+}
+
+.cardD  .author .category .carbon{
+    font-size: 13.4px;
+    color: #777777;
+}
 
 .carousel-item {
     margin-top:6px;
@@ -915,7 +978,7 @@ textarea{
     }
 
     .cardb {
-        width: 80%; /* Saat layar mengecil, .cardb akan menjadi full width */
+        width: 95%; /* Saat layar mengecil, .cardb akan menjadi full width */
     }
 }
 
@@ -954,6 +1017,150 @@ textarea{
 
 .cardb .box-icon .icon{
     font-size: 40px;
+}
+
+.box-chart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    padding: 12px 0 8px 0;
+    height: 385px;
+    flex-wrap: wrap;
+}
+
+.box-chart .chart{
+    width: 65%;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+    overflow-x: scroll;
+    border-radius: 8px;
+}
+
+.box-chart .chart::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+}
+
+.box-chart .chart::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.box-chart .chart::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px; 
+}
+
+.box-chart .chart::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
+
+.box-chart .chart p{
+    color: #555;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.box-chart .box-news{
+    width: 30%;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    height: 98%;
+}
+
+.box-chart .box-news .title{
+    color: #555;
+    border-bottom: 1px solid #888;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+    overflow-y: auto;
+
+}
+
+.box-chart .box-news .news{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px 0 0 12px;
+    overflow-y: auto;
+    height: 280px;
+}
+
+.box-chart .box-news .news::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+}
+
+.box-chart .box-news .news::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.box-chart .box-news .news::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px; 
+}
+
+.box-chart .box-news .news::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.box-chart .box-news .news .card-news{
+    background-color: #f1f1f1;
+    width: 75%;
+    padding: 10px;
+    border-radius: 5px;
+    color: #8f8e8e;
+}
+
+.box-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.box-table .tableP{
+    width: 98%;
+    background-color: white;
+    border-radius: 8px;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.box-table .tableP::-webkit-scrollbar {
+    width: 4px;
+    height: 10px;
+}
+
+.box-table .tableP::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.box-table .tableP::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 4px; 
+}
+
+.box-table .tableP::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.box-table .tableP .table{
+    color: #555;
+    font-weight: 400;
+}
+
+.box-table .tableP .table thead tr {
+    color: #555;
+    font-weight: 400;
 }
 
 @media (max-width:882px) {
@@ -995,6 +1202,21 @@ textarea{
     .icon .logo-sos.re .box-logo{
         width: 100px;
     }
+
+    .box-chart {
+        justify-content: space-evenly;
+        align-items: center;
+        height: auto;
+    }
+
+    .box-chart .chart{
+        width: 95%;
+    }
+    .box-chart .box-news{
+        width: 45%;
+        height: 360px;
+        margin-top: 30px;
+    }
 }
 
 @media (max-width:390px){
@@ -1004,6 +1226,10 @@ textarea{
 
     .sidebar.sidebar.ad.active{
         height: 100%;
+    }
+
+    .box-chart .box-news{
+        width: 80%;
     }
 }
 /* end admin */
