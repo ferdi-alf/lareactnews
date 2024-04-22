@@ -50,14 +50,16 @@ export default function Homepage(props) {
             </div>
 
             <div className='berita-lainnya'>
-                <h1>Berita Lainnya</h1>
-                {/* Cara mengambil data dari database */}
-                {loading && <SkeletonLoader />}
+                <div className="newslist">
+                    <h1>Berita Lainnya</h1>
+                    {/* Cara mengambil data dari database */}
+                    {loading && <SkeletonLoader className="skeleton-newslist" />}
 
-                {!loading && <NewsList news={props.news.data} />}
+                    {!loading && <NewsList news={props.news.data} />}
 
-                <div className="flex justify-center items-center">
-                    <Paginator meta={props.news.meta} />
+                    <div className="flex justify-center items-center">
+                        <Paginator meta={props.news.meta} />
+                    </div>
                 </div>
             </div>
         </div>

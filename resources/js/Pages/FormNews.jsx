@@ -9,10 +9,13 @@ import Swal from 'sweetalert2'
 export default function FormNews(props) {
     console.log("formprops: ", props)
 
+    const [showCate, setShowCate] = useState(false);
+
     const [image, setImage] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
+    const [customCategory, setCustomCategory] = useState('');
 
     const handleImage = (e) => {
         setImage(e.target.files[0]);
@@ -26,8 +29,13 @@ export default function FormNews(props) {
         setDescription(e.target.value);
     }
 
-    const handleCategory = (e) => {
-        setCategory(e.target.value);
+    const handleCategoryChange = (e) => {
+        const selectedCategory = e.target.value;
+        setCategory(selectedCategory);
+    }
+
+    const handleCustomCategoryChange = (e) => {
+        setCustomCategory(e.target.value);
     }
 
     const [errors, setErrors] = useState({});
@@ -48,7 +56,7 @@ export default function FormNews(props) {
             data.append('image', image);
             data.append('title', title);
             data.append('description', description);
-            data.append('category', category);
+            data.append('category', category === 'lainnya...(isi sendiri)' ? customCategory : category);
 
             try {
                 const response = await Inertia.post('/news', data);
@@ -110,7 +118,23 @@ export default function FormNews(props) {
                 <div className="max-w-7xl mx-auto rounded-md mt-6 sm:px-6 lg:px-8">
                     <div className="flex flex-col shadow-xl justify-center p-6 bg-white border-b border-gray-200">
                         <label htmlFor="category">Category</label>
-                        <input id='category' type="text" onChange={handleCategory} value={category} placeholder="Category" className="m-2 text bg-white input input-bordered " />
+                        <select className="m-2 text bg-white input input-bordered" onChange={handleCategoryChange}>
+                            <option disabled selected>pilih category</option>
+                            <option value="politics">Politics</option>
+                            <option value="technology">Technology</option>
+                            <option value="business">Business and Finance</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="sports">Sports</option>
+                            <option value="health">Health</option>
+                            <option value="environment">Environment</option>
+                            <option value="education">Education</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="international">International</option>
+                            <option>lainnya...(isi sendiri)</option>
+                        </select>
+                        {category === 'lainnya...(isi sendiri)' && (
+                            <input id='category' type="text" onChange={handleCustomCategoryChange} value={customCategory} placeholder="Category" className="m-2 text bg-white input input-bordered " />
+                        )}
                     </div>
                 </div>
 
@@ -119,5 +143,5 @@ export default function FormNews(props) {
                 </div>
 
             </form>
-        </AuthenticatedLayout>)
+        </AuthenticatedLayout >)
 }

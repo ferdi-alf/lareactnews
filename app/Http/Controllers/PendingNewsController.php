@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PendingNewsCollection;
 use App\Models\News;
 use Inertia\Inertia;
 use App\Models\PendingNews;
@@ -37,7 +38,13 @@ class PendingNewsController extends Controller
         $pendingNews->user_email = $user->email;
         $pendingNews->title_news = $validasiData['title'];
         $pendingNews->description_news = $validasiData['description'];
-        $pendingNews->category = $validasiData['category'];
+
+        $category = $validasiData['category'];
+        if ($category === 'lainnya...(isi sendiri)') {
+            $pendingNews->category = $validasiData['custom_category'];
+        } else {
+            $pendingNews->category = $category;
+        }
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -56,14 +63,14 @@ class PendingNewsController extends Controller
     // masuk ke panding news
     public function pendingNews()
     {
-        $data = PendingNews::get();
         $admin = Auth::guard('admin')->user();
+        $pendingNews = new PendingNewsCollection(PendingNews::OrderByDesc('id')->paginate(10));
 
         return Inertia::render('Admin/PendingNews', [
             'auth' => [
                 'admin' => $admin
             ],
-            'data' => $data
+            'pendingNews' => $pendingNews,
         ]);
     }
     // end masuk ke panding news

@@ -7,8 +7,11 @@ const SkeletonLoader = () => {
     return (
         <div className='gap-y-8'>
             {/* Tambahkan elemen skeleton loading yang Anda butuhkan */}
-            <Skeleton className='w-full' height={100} />
-            <Skeleton className='w-full' height={100} />
+            <Skeleton height={130} />
+            <Skeleton height={130} />
+            <Skeleton height={130} />
+            <Skeleton height={130} />
+            <Skeleton height={130} />
             {/* Sesuaikan jumlah dan properti skeleton sesuai kebutuhan */}
         </div>
     );
