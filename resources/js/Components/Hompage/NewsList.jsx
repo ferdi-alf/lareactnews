@@ -2,6 +2,13 @@ import { Link } from "@inertiajs/react";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { Inertia } from "@inertiajs/inertia";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatDistanceToNow } from 'date-fns';
+
+function HumanReadableTime({ timestamp }) {
+    const timeAgo = formatDistanceToNow(new Date(timestamp), { addSuffix: true });
+    return <span>{timeAgo}</span>;
+}
+
 const isNews = (news) => {
     console.log('berita: ', news);
 
@@ -26,21 +33,23 @@ const isNews = (news) => {
                     </figure>
                     <div className="cardD">
                         <div className="title">
-                            <div className="titleT ">Lima Dampak Kucuran Dana Baru 95 Miliar AS dari AS untuk Ukraina, Israel dan Taiwan</div>
+                            <div className="titleT ">{data.title}</div>
                             <div className="badge view ">
                                 <FontAwesomeIcon icon={faEye} />
-                                12
+                                {data.views}
                             </div>
                         </div>
-                        <div className="description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ipsam ut atque rerum aut facere quos labore, animi numquam reiciendis.
+                        <div className="description ">
+                            {data.description}
                         </div>
                         <div className="author">
                             <div className="category">
-                                <div className="carbon">16 jam yang lalu</div>
+                                <div className="carbon">
+                                    <HumanReadableTime timestamp={data.created_at} />
+                                </div>
                             </div>
-                            <div className="badge name">Ferdi</div>
-                            <div className="badge badge-secondary">Category</div>
+                            <div className="badge name">{data.author}</div>
+                            <div className="badge badge-secondary">{data.category}</div>
                         </div>
                     </div>
                 </Link >

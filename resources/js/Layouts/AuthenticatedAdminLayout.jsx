@@ -46,7 +46,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                             <br />
                             {admin.email}
                         </div>
-                        end header sidebar
+                        {/* end header sidebar */}
                         <div className="search">
                             <div className="box-search flex flex-col">
                                 <input

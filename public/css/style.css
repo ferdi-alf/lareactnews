@@ -117,6 +117,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 500;
+    text-align: end;
+    padding-right: 7px;
+    margin-right: 7px;
 }
 
 .cardD  .author{
@@ -376,6 +379,7 @@ justify-content: space-around;
 
 .cardw .box-icon .icon{
     font-size: 40px;
+    background: transparent;
 }
 
 .boxw{
