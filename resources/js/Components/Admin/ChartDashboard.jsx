@@ -57,7 +57,6 @@ const ChartDashboard = ({ chart, fromUsers }) => {
                 <div className='chart' ref={chartRef}>
                     <p>Statisik Berita Perbulan</p>
                     <LineChart
-                        className='line'
                         width={1000}
                         height={300}
                         data={data}
