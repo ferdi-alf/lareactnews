@@ -58,7 +58,7 @@ const ChartDashboard = ({ chart, fromUsers }) => {
                     <p>Statisik Berita Perbulan</p>
                     <LineChart
                         className='line'
-                        width={chartWidth}
+                        width={1000}
                         height={300}
                         data={data}
                         margin={{

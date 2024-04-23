@@ -1068,21 +1068,17 @@ textarea{
 
 .box-chart .card-chart{
     width: 68%;
-    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
 }
 
-.box-chart .card-chart .chart{
-    width: 800px;
-    background-color: #f1f1f1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.box-chart .chart{
+    overflow-x: auto;
     padding-top: 20px;
-    overflow-x: scroll;
     border-radius: 8px;
 }
-
 
 .box-chart .chart::-webkit-scrollbar {
     width: 4px;
