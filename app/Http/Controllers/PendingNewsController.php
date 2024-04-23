@@ -74,4 +74,23 @@ class PendingNewsController extends Controller
         ]);
     }
     // end masuk ke panding news
+
+    // post berita
+    public function postPending($id)
+    {
+        $pendingNews = PendingNews::findOrFail($id);
+
+        $news = new News();
+        $news->foto = $pendingNews->foto;
+        $news->title = $pendingNews->title_news;
+        $news->description = $pendingNews->description_news;
+        $news->category = $pendingNews->category;
+        $news->author = $pendingNews->user_name;
+        $news->save();
+
+        $pendingNews->delete();
+
+        return back()->with('succes', 'Succes');
+    }
+    // end post berita
 }

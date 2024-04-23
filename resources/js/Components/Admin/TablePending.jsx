@@ -1,7 +1,24 @@
 import { Link } from '@inertiajs/react';
 import '../../../../public/css/style.css'
+import { Inertia } from '@inertiajs/inertia';
 
 const isTablePending = (data) => {
+    const handlePost = async (id) => {
+        const isConfirm = window.confirm("Apa benar benar ingin mempost berita ini?")
+
+        if (isConfirm) {
+            try {
+                const response = await Inertia.post(route('post.pending', { id }))
+
+                if (response === 'succes') {
+                    //
+                }
+            } catch (error) {
+                console.error("Error: ", error)
+            }
+        }
+    }
+
     return (
         <div className='box-table'>
             <div className="tableP">
@@ -39,7 +56,7 @@ const isTablePending = (data) => {
                                     <td>{data.user_name}</td>
                                     <td>{data.user_email}</td>
                                     <td className='text-center flex flex-nowrap items-center'>
-                                        <Link as="button" className="mx-2 btn border-none bg-sky-400 text-white">Post</Link>
+                                        <button onClick={() => handlePost(data.id)} className="mx-2 btn border-none bg-sky-400 text-white">Post</button>
                                         <Link as="button" href={route('delete.news')} method='post' className='btn bg-rose-500 text-white border-none'>Hapus</Link>
                                     </td>
                                 </tr>
@@ -69,16 +86,15 @@ const noTableNews = () => {
                             <th scope="col" className='text-center'>action</th>
                         </tr>
                     </thead>
-
-                    <div className='TextT'>Belum ada berita pending</div>
                 </table>
+                <div className='TextT text-center text-black'>Belum ada berita pending</div>
             </div>
         </div>
     )
 }
 
 const TablePending = ({ data }) => {
-    return !data ? noTableNews() : isTablePending(data);
+    return !data < 0 ? noTableNews() : isTablePending(data);
 }
 
 export default TablePending;

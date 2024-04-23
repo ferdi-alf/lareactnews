@@ -26,7 +26,11 @@ Route::post('/loginadmin', [AuthenticatedAdminSessionController::class, 'postlog
 
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin.dashboard');
+
+    // pending news
     Route::get('/pending-news', [PendingNewsController::class, 'pendingNews'])->name('pending.news');
+    Route::post('/post-news/id/{id}', [PendingNewsController::class, 'postPending'])->name('post.pending');
+    // end pending news
 });
 
 // middleware user
