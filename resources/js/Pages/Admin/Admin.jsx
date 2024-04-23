@@ -14,7 +14,7 @@ export default function Admin(props) {
 
             <div className="py-12 flex flex-wrap justify-center items-center flex-col h-full">
                 <AdminDashboard data={props} />
-                <ChartDashboard chart={props.chartData} />
+                <ChartDashboard chart={props.chartData} fromUsers={props.fromUsers.data} />
             </div>
         </AuthenticatedAdminLayout>
     )

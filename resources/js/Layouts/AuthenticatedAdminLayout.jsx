@@ -74,9 +74,9 @@ export default function AuthenticatedAdmin({ admin, children }) {
                         </div>
                         <div className="hero-bar">
                             <ul className="route">
-                                <FontAwesomeIcon icon={faHouse} style={{ fontSize: "16px" }} />
+                                <FontAwesomeIcon icon={faHouse} style={{ fontSize: "21px" }} />
                                 <li >
-                                    <Link href={route('admin.dashboard')}>Dashboard</Link>
+                                    <Link style={{ fontSize: "21px" }} href={route('admin.dashboard')}>Dashboard</Link>
                                 </li>
                             </ul>
                         </div>
@@ -84,7 +84,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                         <div className="navigasi">
                             <ul className='route-nav'>
                                 <li className="nav on" onClick={() => setShowDropdown(!showDropdown)} >
-                                    Auth
+                                    <p>Auth</p>
                                     <FontAwesomeIcon icon={showDropdown ? faAngleDown : faAngleRight} />
                                 </li>
                                 {showDropdown && (
@@ -103,20 +103,20 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                 <div className='text-start w-full mt-3' style={{ fontWeight: "400", fontFamily: "Ubuntu, sans-serif" }}>News</div>
                                 <Link className="nav" href={route('pending.news')}>
                                     <FontAwesomeIcon icon={faNewspaper} className='icons' />
-                                    Panding News
+                                    <p>Panding News </p>
                                 </Link>
-                                <Link className="nav" style={{ marginTop: "4px" }}>
+                                <Link className="nav" style={{ marginTop: "10px" }}>
                                     <FontAwesomeIcon icon={faSatelliteDish} className='icons' />
-                                    News Controller
+                                    <p>News Controller </p>
                                 </Link>
-                                <Link className="nav" style={{ marginTop: "4px" }}>
+                                <Link className="nav" style={{ marginTop: "10px" }}>
                                     <FontAwesomeIcon icon={faArrowUpFromBracket} className='icons' />
-                                    News Insert
+                                    <p>News Insert</p>
                                 </Link>
                                 <div className='text-start w-full mt-3' style={{ fontWeight: "400", fontFamily: "Ubuntu, sans-serif" }}>Account</div>
                                 <Link className="nav" style={{ marginTop: "4px" }}>
                                     <FontAwesomeIcon icon={faGear} className='icons' />
-                                    Settings
+                                    <p>Settings</p>
                                 </Link>
                             </ul>
 

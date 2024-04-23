@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import '../../../../public/css/style.css'
+import { formatDistanceToNow } from 'date-fns';
+import '../../../../public/css/style.css';
 
-const ChartDashboard = ({ chart }) => {
-    // Membuat array untuk nama bulan
+const ChartDashboard = ({ chart, fromUsers }) => {
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     const dataByMonth = {};
@@ -18,30 +18,65 @@ const ChartDashboard = ({ chart }) => {
         data.push({ month, total })
     }
 
+    const [chartWidth, setChartWidth] = useState(0);
+    const chartRef = useRef(null);
+
+    useEffect(() => {
+        const updateChartWidth = () => {
+            const containerWidth = chartRef.current.clientWidth;
+            setChartWidth(containerWidth);
+        };
+
+        window.addEventListener('resize', updateChartWidth);
+        updateChartWidth();
+
+        return () => {
+            window.removeEventListener('resize', updateChartWidth);
+        };
+    }, []);
+
+    const HumanReadableTime = ({ timestamp }) => {
+        const timeAgo = formatDistanceToNow(new Date(timestamp), { addSuffix: true });
+        return <span>{timeAgo}</span>;
+    };
+
+    const userNews = fromUsers.map((user, index) => (
+        <div className="card-news" key={index}>
+            <p style={{ fontWeight: "bold", color: "#555", fontFamily: "Ubuntu, sans-serif" }}>{user.author}</p>
+            <p style={{ fontSize: "13px" }}>{user.email}</p>
+            <p className='truncate' style={{ fontWeight: "600", color: "#888" }}>{user.title}</p>
+            <p className="text-end" style={{ fontSize: "14px" }}>
+                <HumanReadableTime timestamp={user.created_at} />
+            </p>
+        </div>
+    ));
 
     return (
         <div className='box-chart'>
-            <div className='chart'>
-                <p>Statisic Berita Perbulan</p>
-                <LineChart
-                    width={800}
-                    className='line'
-                    height={300}
-                    data={data}
-                    margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="total" stroke="#8884d8" activeDot={{ r: 8 }} />
-                </LineChart>
+            <div className="card-chart">
+                <div className='chart' ref={chartRef}>
+                    <p>Statisik Berita Perbulan</p>
+                    <LineChart
+                        className='line'
+                        width={chartWidth}
+                        height={300}
+                        data={data}
+                        margin={{
+                            top: 5,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="month" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="total" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    </LineChart>
+                </div>
+
             </div>
 
             <div className="box-news">
@@ -49,11 +84,7 @@ const ChartDashboard = ({ chart }) => {
                     <p>Berita bulan ini dari user</p>
                 </div>
                 <div className="news bg-gray-300">
-                    <div className="card-news">
-                        <p style={{ fontWeight: "bold" }}>Ferdi</p>
-                        <p style={{ fontSize: "12px" }}>Ferdi@gmail.com</p>
-                        <p className='truncate'>Seseorang, ini adalah titla berita oejqudhuwrh2ygcyrgvtugvruwyjg</p>
-                    </div>
+                    {userNews}
                 </div>
             </div>
         </div >

@@ -679,9 +679,9 @@ textarea{
 .sidebar.ad.active {
     transform: translateX(0); /* Menggeser sidebar ke posisi 0 saat aktif */
     width: 20%;
-    height: 550px;
-    z-index: 800;
     height: 100%;
+    z-index: 800;
+    position: fixed;
 }
 
 .mother .sidebar .card-sidebar{
@@ -689,12 +689,13 @@ textarea{
     transform: translateX(-100%); 
     display: none;
 }
+
 .mother .sidebar.active .card-sidebar{
     background-color: rgb(24, 24, 24);
     padding: 5px 10px 5px 10px;
     display: block;
-    transform: translateX(0);
     height: 100%;
+    transform: translateX(0);
     overflow-y: auto;
     ::-webkit-scrollbar {
         width: 8px; /* Lebar scrollbar */
@@ -739,13 +740,13 @@ textarea{
 }
 
 .icons{
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .search{
     width: 100%;
     padding: 7px;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .search .box-search{
@@ -760,6 +761,8 @@ textarea{
     width: 100%;
     border-radius: 8px;
     color: white;
+    height: 50px;
+
 }
 
 .hasil{
@@ -825,6 +828,11 @@ textarea{
     width: 100%;
     padding:5px;
     border-radius:8px;
+    height: 40px;
+}
+
+.navigasi .route-nav .nav p {
+    font-size: 20px;
 }
 
 .navigasi .route-nav .nav:hover{
@@ -844,7 +852,7 @@ textarea{
     column-gap:12px;
     font-family:"Ubuntu", sans-serif;
     color: white;
-    font-size:17px;
+    font-size:21px;
     row-gap:19px;
     font-weight: 500;
     border-radius: 8px;
@@ -890,7 +898,7 @@ textarea{
     transition: 0.3s ; 
     transform: transform 0.3s;
     width: 80%;
-    height: 550px;
+    height: 100%;
 }
 
 .cont{
@@ -1058,8 +1066,13 @@ textarea{
     flex-wrap: wrap;
 }
 
-.box-chart .chart{
-    width: 65%;
+.box-chart .card-chart{
+    width: 68%;
+    overflow-x: auto;
+}
+
+.box-chart .card-chart .chart{
+    width: 800px;
     background-color: #f1f1f1;
     display: flex;
     align-items: center;
@@ -1069,6 +1082,7 @@ textarea{
     overflow-x: scroll;
     border-radius: 8px;
 }
+
 
 .box-chart .chart::-webkit-scrollbar {
     width: 4px;
@@ -1238,7 +1252,7 @@ textarea{
         height: auto;
     }
 
-    .box-chart .chart{
+    .box-chart .card-chart{
         width: 95%;
     }
     .box-chart .box-news{

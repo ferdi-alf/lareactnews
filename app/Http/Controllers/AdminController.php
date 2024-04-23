@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NewsCollection;
 use App\Models\News;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Admin;
 use App\Models\PendingNews;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +27,9 @@ class AdminController extends Controller
             ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
             ->get();
 
-
+        $startMonth = Carbon::now()->startOfMonth();
+        $endMonth = Carbon::now()->endOfMonth();
+        $newsFromUsers = new NewsCollection(News::get()->whereBetween('created_at', [$startMonth, $endMonth]));
 
         return Inertia::render('Admin/Admin', [
             'auth' => [
@@ -35,7 +39,8 @@ class AdminController extends Controller
             'totalBerita' => $total,
             'totalAdmin' => $totalAdmin,
             'totalUser' => $totalUser,
-            'chartData' => $datachart
+            'chartData' => $datachart,
+            'fromUsers' => $newsFromUsers
         ]);
     }
 }

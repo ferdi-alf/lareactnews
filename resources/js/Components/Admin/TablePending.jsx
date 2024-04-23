@@ -40,7 +40,7 @@ const isTablePending = (data) => {
                         {data.map((data, i) => {
                             return (
                                 <tr key={i}>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{i + 1}</th>
                                     <td><img style={{ width: '70px' }} src={`/storage/images/${data.foto}`} alt="Shoes" /></td>
                                     <td className="truncate overflow-hidden">
                                         <div className="truncate w-32">
@@ -94,7 +94,7 @@ const noTableNews = () => {
 }
 
 const TablePending = ({ data }) => {
-    return !data < 0 ? noTableNews() : isTablePending(data);
+    return !data > 1 ? noTableNews() : isTablePending(data);
 }
 
 export default TablePending;
