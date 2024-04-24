@@ -136,10 +136,5 @@ class NewsController extends Controller
     // end update
 
     // masuk ke sesi hapus data
-    public function delete(Request $request)
-    {
-        $news = News::find($request->id);
-        $news->delete();
-        return redirect()->back()->with('success', 'Berhasil Hapus Data');
-    }
+
 }

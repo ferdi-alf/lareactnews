@@ -1,23 +1,79 @@
 import { Link } from '@inertiajs/react';
 import '../../../../public/css/style.css'
 import { Inertia } from '@inertiajs/inertia';
+import Swal from 'sweetalert2'
 
 const isTablePending = (data) => {
     const handlePost = async (id) => {
-        const isConfirm = window.confirm("Apa benar benar ingin mempost berita ini?")
-
-        if (isConfirm) {
+        const { isConfirmed } = await Swal.fire({
+            icon: "info",
+            title: "Warning",
+            text: "Harap Periksa kembali sebelum benar-benar mempost berita, telusuri apakah berita itu asli atau tidak",
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+        });
+        if (isConfirmed) {
             try {
-                const response = await Inertia.post(route('post.pending', { id }))
+                // Gunakan id sebagai parameter langsung tanpa perlu dibungkus dalam objek
+                const response = await Inertia.post(route('post.pending', id));
 
-                if (response === 'succes') {
-                    //
+                // Periksa apakah respons memiliki properti success
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Berita berhasil diposting!',
+                    });
                 }
             } catch (error) {
-                console.error("Error: ", error)
+                console.error("Error: ", error);
             }
         }
     }
+
+    const handleDelete = async (id) => {
+        try {
+            const { isConfirmed } = await Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                text: "Berikan pesan kepada user mengapa anda menolak berita ini",
+                input: "text",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            });
+
+            if (isConfirmed) {
+                const response = await Inertia.post(route('delete.news', id));
+
+                if (response.success) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Failed to delete the file. Please try again.",
+                        icon: "error"
+                    });
+                }
+            }
+        } catch (error) {
+            // Tangani kesalahan yang mungkin terjadi saat memposting permintaan penghapusan
+            console.error("Error: ", error);
+            Swal.fire({
+                title: "Error!",
+                text: "An error occurred while processing the request. Please try again.",
+                icon: "error"
+            });
+        }
+    }
+
+
 
     return (
         <div className='box-table'>
@@ -57,7 +113,7 @@ const isTablePending = (data) => {
                                     <td>{data.user_email}</td>
                                     <td className='text-center flex flex-nowrap items-center'>
                                         <button onClick={() => handlePost(data.id)} className="mx-2 btn border-none bg-sky-400 text-white">Post</button>
-                                        <Link as="button" href={route('delete.news')} method='post' className='btn bg-rose-500 text-white border-none'>Hapus</Link>
+                                        <button onClick={() => handleDelete(data.id)} method='post' className='btn bg-rose-500 text-white border-none'>Hapus</button>
                                     </td>
                                 </tr>
                             )

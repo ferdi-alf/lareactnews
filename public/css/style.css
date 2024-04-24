@@ -740,7 +740,7 @@ textarea{
 }
 
 .icons{
-    font-size: 25px;
+    font-size: 21px;
 }
 
 .search{
@@ -832,7 +832,7 @@ textarea{
 }
 
 .navigasi .route-nav .nav p {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .navigasi .route-nav .nav:hover{
@@ -1127,7 +1127,7 @@ textarea{
     display: flex;
     flex-direction: column;
     align-items: start;
-    padding: 10px 0 0 12px;
+    padding: 10px 0 7px 12px;
     overflow-y: auto;
     height: 280px;
 }
@@ -1172,6 +1172,8 @@ textarea{
     border-radius: 8px;
     overflow-x: auto;
     padding: 10px;
+    height: 530px;
+    overflow-y: auto;
 }
 
 .box-table .tableP::-webkit-scrollbar {

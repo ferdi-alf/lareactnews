@@ -30,7 +30,10 @@ Route::middleware('auth.admin')->group(function () {
     // pending news
     Route::get('/pending-news', [PendingNewsController::class, 'pendingNews'])->name('pending.news');
     Route::post('/post-news/id/{id}', [PendingNewsController::class, 'postPending'])->name('post.pending');
+    Route::post('/news/delete/{id}', [PendingNewsController::class, 'delete'])->name('delete.news');
     // end pending news
+    // akses admin
+    Route::get('/data-admin', [AdminController::class, 'getAdmin'])->name('data.admin');
 });
 
 // middleware user
@@ -47,9 +50,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // pengeditan berita
     Route::get('/news/edit', [NewsController::class, 'edit'])->name('edit.news');
     Route::post('/news/update', [NewsController::class, 'update'])->name('update.news');
-
-    // penghapusan berita
-    Route::post('/news/delete/', [NewsController::class, 'delete'])->name('delete.news');
     // end dashboard
 });
 // end middleware admins

@@ -43,4 +43,17 @@ class AdminController extends Controller
             'fromUsers' => $newsFromUsers
         ]);
     }
+
+    public function getAdmin()
+    {
+        $admin = Auth::guard('admin')->user();
+        $dataAdmin = Admin::get();
+
+        return Inertia::render('Admin/DataAdmin', [
+            'auth' => [
+                'admin' => $admin
+            ],
+            'dataAdmin' => $dataAdmin
+        ]);
+    }
 }

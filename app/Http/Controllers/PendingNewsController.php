@@ -95,4 +95,13 @@ class PendingNewsController extends Controller
         return back()->with('succes', 'Succes');
     }
     // end post berita
+
+    // toal berita
+    public function delete(Request $request)
+    {
+        $news = PendingNews::find($request->id);
+        $news->delete();
+        return redirect()->back()->with('success', 'Berhasil Hapus Data');
+    }
+    // end tolak berita
 }

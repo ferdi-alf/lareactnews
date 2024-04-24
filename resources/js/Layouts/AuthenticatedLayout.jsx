@@ -46,7 +46,6 @@ export default function Authenticated({ user, header, children }) {
                     <div className="image bg-slate-400">
                         <img src={Logo} alt="" />
                     </div>
-
                     <ul className="box-link">
                         <li>
                             <Link href={route('dashboard')}>Dashboard</Link>

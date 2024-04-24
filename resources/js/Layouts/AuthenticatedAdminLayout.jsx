@@ -76,7 +76,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                             <ul className="route">
                                 <FontAwesomeIcon icon={faHouse} style={{ fontSize: "21px" }} />
                                 <li >
-                                    <Link style={{ fontSize: "21px" }} href={route('admin.dashboard')}>Dashboard</Link>
+                                    <Link href={route('admin.dashboard')}>Dashboard</Link>
                                 </li>
                             </ul>
                         </div>
@@ -89,7 +89,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                 </li>
                                 {showDropdown && (
                                     <ul className='drop-nav'>
-                                        <Link className='li'>
+                                        <Link className='li' href={route('data.admin')}>
                                             <FontAwesomeIcon icon={faUserSecret} />
                                             Admin
                                         </Link>
@@ -105,11 +105,11 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                     <FontAwesomeIcon icon={faNewspaper} className='icons' />
                                     <p>Panding News </p>
                                 </Link>
-                                <Link className="nav" style={{ marginTop: "10px" }}>
+                                <Link className="nav" style={{ marginTop: "7px" }}>
                                     <FontAwesomeIcon icon={faSatelliteDish} className='icons' />
                                     <p>News Controller </p>
                                 </Link>
-                                <Link className="nav" style={{ marginTop: "10px" }}>
+                                <Link className="nav" style={{ marginTop: "7px" }}>
                                     <FontAwesomeIcon icon={faArrowUpFromBracket} className='icons' />
                                     <p>News Insert</p>
                                 </Link>
