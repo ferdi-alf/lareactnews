@@ -1,7 +1,8 @@
 import { Link } from '@inertiajs/react';
 import '../../../../public/css/style.css'
 import { Inertia } from '@inertiajs/inertia';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 const isTablePending = (data) => {
     const handlePost = async (id) => {
@@ -14,10 +15,8 @@ const isTablePending = (data) => {
         });
         if (isConfirmed) {
             try {
-                // Gunakan id sebagai parameter langsung tanpa perlu dibungkus dalam objek
                 const response = await Inertia.post(route('post.pending', id));
 
-                // Periksa apakah respons memiliki properti success
                 if (response.success) {
                     Swal.fire({
                         icon: 'success',
@@ -33,12 +32,13 @@ const isTablePending = (data) => {
 
     const handleDelete = async (id) => {
         try {
-            const { isConfirmed } = await Swal.fire({
+            const { value: message, isConfirmed } = await Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
                 text: "Berikan pesan kepada user mengapa anda menolak berita ini",
                 input: "text",
                 icon: "warning",
+                inputPlaceholder: "masukan",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
@@ -46,21 +46,23 @@ const isTablePending = (data) => {
             });
 
             if (isConfirmed) {
-                const response = await Inertia.post(route('delete.news', id));
-
-                if (response.success) {
+                if (!message) {
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Error!",
-                        text: "Failed to delete the file. Please try again.",
+                        text: "Pesan wajib diisi",
                         icon: "error"
                     });
+                    return;
+                } else {
+                    const response = await Inertia.post(route('delete.news', id));
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Berita berhasil di tolak",
+                        icon: "success"
+                    });
+
                 }
+
+
             }
         } catch (error) {
             // Tangani kesalahan yang mungkin terjadi saat memposting permintaan penghapusan

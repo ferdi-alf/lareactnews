@@ -28,7 +28,6 @@ export default function MyNews(props) {
                                         <th scope="col">Title</th>
                                         <th scope='col'>Description</th>
                                         <th scope="col">Category</th>
-                                        <th scope="col" className='text-center'>action</th>
                                     </tr>
                                 </thead>
                                 {newsData.map((data, i) => (
@@ -47,10 +46,6 @@ export default function MyNews(props) {
                                                 </div>
                                             </td>
                                             <td>{data.category}</td>
-                                            <td className='text-center flex flex-nowrap items-center'>
-                                                <Link as="button" className="mx-2 btn border-none bg-sky-400 text-white">Edit</Link>
-                                                <Link as="button" href={route('delete.news')} data={{ id: data.id }} method='post' className='btn bg-rose-500 text-white border-none'>Hapus</Link>
-                                            </td>
                                         </tr>
                                     </tbody>
                                 ))}

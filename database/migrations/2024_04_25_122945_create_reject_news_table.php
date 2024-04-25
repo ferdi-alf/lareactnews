@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('reject_news', function (Blueprint $table) {
             $table->id();
-            $table->string('foto')->nullable();
             $table->string('title');
-            $table->string('description');
-            $table->unsignedInteger('views')->default(0); // Jumlah views
-            $table->string('last_viewed_ip')->nullable(); // IP terakhir yang mengakses berita
-            $table->string('category');
-            $table->string('author');
+            $table->text('pesan')->nullable();
+            $table->string('user_name');
+            $table->string('user_email');
+            $table->string('admin_name');
+            $table->string('admin_email');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('reject_news');
     }
 };

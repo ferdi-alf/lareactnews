@@ -8,6 +8,7 @@ use App\Models\PendingNews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\PendingNewsCollection;
+use App\Models\RejectNews;
 
 class PendingNewsController extends Controller
 {
@@ -97,11 +98,27 @@ class PendingNewsController extends Controller
     // end post berita
 
     // toal berita
-    public function delete(Request $request)
+    public function delete($id, Request $request)
     {
-        $news = PendingNews::find($request->id);
-        $news->delete();
-        return redirect()->back()->with('success', 'Berhasil Hapus Data');
+
+        $message = $request->input('message');
+        $RejectNews = PendingNews::find($request->id);
+        $admin = Auth::guard('admin')->user();
+
+
+        RejectNews::create([
+            'id' => $id,
+            'title' => $RejectNews->title_news,
+            'message' => $message,
+            'user_name' => $RejectNews->user_name,
+            'user_email' => $RejectNews->user_email,
+            'admin_name' => $admin->name,
+            'admin_email' => $admin->email,
+        ]);
+
+        $RejectNews->delete();
+
+        return back()->with('message', 'berita berhasil di hapus');
     }
     // end tolak berita
 }
