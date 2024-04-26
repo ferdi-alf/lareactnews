@@ -18,23 +18,6 @@ const ChartDashboard = ({ chart, fromUsers }) => {
         data.push({ month, total })
     }
 
-    const [chartWidth, setChartWidth] = useState(0);
-    const chartRef = useRef(null);
-
-    useEffect(() => {
-        const updateChartWidth = () => {
-            const containerWidth = chartRef.current.clientWidth;
-            setChartWidth(containerWidth);
-        };
-
-        window.addEventListener('resize', updateChartWidth);
-        updateChartWidth();
-
-        return () => {
-            window.removeEventListener('resize', updateChartWidth);
-        };
-    }, []);
-
     const HumanReadableTime = ({ timestamp }) => {
         const timeAgo = formatDistanceToNow(new Date(timestamp), { addSuffix: true });
         return <span>{timeAgo}</span>;
@@ -54,7 +37,7 @@ const ChartDashboard = ({ chart, fromUsers }) => {
     return (
         <div className='box-chart'>
             <div className="card-chart">
-                <div className='chart' ref={chartRef}>
+                <div className='chart'>
                     <p>Statisik Berita Perbulan</p>
                     <LineChart
                         width={1000}

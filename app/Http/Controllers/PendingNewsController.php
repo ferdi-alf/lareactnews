@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Inertia\Inertia;
+use App\Models\RejectNews;
+use App\Models\ConfirmNews;
 use App\Models\PendingNews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\PendingNewsCollection;
-use App\Models\RejectNews;
 
 class PendingNewsController extends Controller
 {
@@ -81,6 +82,7 @@ class PendingNewsController extends Controller
     public function postPending($id)
     {
         $pendingNews = PendingNews::findOrFail($id);
+        $admin = Auth::guard('admin')->user();
 
         $news = new News();
         $news->foto = $pendingNews->foto;
@@ -90,6 +92,15 @@ class PendingNewsController extends Controller
         $news->author = $pendingNews->user_name;
         $news->email = $pendingNews->user_email;
         $news->save();
+
+        ConfirmNews::create([
+            'id' => $id,
+            'title' => $pendingNews->title_news,
+            'user_name' => $pendingNews->user_name,
+            'user_email' => $pendingNews->user_email,
+            'admin_name' => $admin->name,
+            'admin_email' => $admin->email
+        ]);
 
         $pendingNews->delete();
 
@@ -118,7 +129,7 @@ class PendingNewsController extends Controller
 
         $RejectNews->delete();
 
-        return back()->with('message', 'berita berhasil di hapus');
+        return redirect()->back()->withErrors(['Berita berhasil diajukan untuk ditinjau.']);
     }
     // end tolak berita
 }

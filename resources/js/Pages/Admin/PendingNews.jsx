@@ -13,7 +13,7 @@ export default function PendingNews(props) {
             <Head title="admin" />
 
             <div className="py-12 flex flex-wrap justify-center items-center flex-col">
-                <TablePending data={props.pendingNews.data} />
+                <TablePending data={props.pendingNews.data} props={props} />
             </div>
         </AuthenticatedAdminLayout>
     )

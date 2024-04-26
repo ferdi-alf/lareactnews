@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ConfirmNews extends Model
 {
     use HasFactory;
+    protected $table = 'confirm_news';
     protected $fillable = ['id', 'title', 'user_name', 'user_email', 'admin_name', 'admin_email', 'created_at'];
 }

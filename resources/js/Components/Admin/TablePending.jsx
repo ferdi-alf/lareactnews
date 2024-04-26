@@ -4,7 +4,8 @@ import { Inertia } from '@inertiajs/inertia';
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 
-const isTablePending = (data) => {
+const isTablePending = (data, props) => {
+    console.log("props: ", props)
     const handlePost = async (id) => {
         const { isConfirmed } = await Swal.fire({
             icon: "info",
@@ -54,15 +55,7 @@ const isTablePending = (data) => {
                     return;
                 } else {
                     const response = await Inertia.post(route('delete.news', id));
-                    Swal.fire({
-                        title: "Success!",
-                        text: "Berita berhasil di tolak",
-                        icon: "success"
-                    });
-
                 }
-
-
             }
         } catch (error) {
             // Tangani kesalahan yang mungkin terjadi saat memposting permintaan penghapusan
@@ -79,6 +72,15 @@ const isTablePending = (data) => {
 
     return (
         <div className='box-table'>
+            {Object.keys(props.errors).length > 0 && (
+                Object.values(props.errors).map((error, index) => {
+                    Swal.fire({
+                        title: "Succes",
+                        text: "berita berhasil di tolak, pesan terkirim ke dashboard user",
+                        icon: "success"
+                    })
+                })
+            )}
             <div className="tableP">
                 <table className="table table-striped">
                     <thead>
@@ -151,8 +153,8 @@ const noTableNews = () => {
     )
 }
 
-const TablePending = ({ data }) => {
-    return !data > 1 ? noTableNews() : isTablePending(data);
+const TablePending = ({ data, props }) => {
+    return !data > 1 ? noTableNews() : isTablePending(data, props);
 }
 
 export default TablePending;

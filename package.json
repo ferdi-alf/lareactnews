@@ -36,6 +36,7 @@
         "@nivo/tooltip": "^0.85.1",
         "apexcharts": "^3.48.0",
         "bootstrap": "^5.3.3",
+        "chart.js": "^4.4.2",
         "ckeditor4-react": "^5.1.0",
         "date-fns": "^3.6.0",
         "react-loading-skeleton": "^3.4.0",

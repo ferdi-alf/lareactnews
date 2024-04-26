@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use App\Models\News;
 use App\Models\View;
 use Inertia\Inertia;
+use App\Models\RejectNews;
+use App\Models\ConfirmNews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\NewsCollection;
@@ -73,7 +75,13 @@ class NewsController extends Controller
         $totalBerita = $news::where('author', auth()->user()->name)->count();
         $totalBeritaHariIni = $news::where('author', auth()->user()->name)
             ->where('created_at', '>', $waktu)->count();
-        $total = compact('totalBerita', 'totalBeritaHariIni');
+
+        // polar chart
+        $totalRejected = RejectNews::where('user_name', auth()->user()->name)->count();
+        $totalConfirm = ConfirmNews::where('user_name', auth()->user()->name)->count();
+        // end polar chart
+
+        $total = compact('totalBerita', 'totalBeritaHariIni', 'totalRejected', 'totalConfirm');
 
         return Inertia::render('Dashboard', [
             'total' => $total
