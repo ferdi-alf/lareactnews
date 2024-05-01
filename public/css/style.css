@@ -386,9 +386,7 @@ justify-content: space-around;
 }
 
 .cardw .textw{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
     font-size: 18px;
     font-weight: 500;
 }
@@ -405,6 +403,43 @@ justify-content: space-around;
 .boxw{
     height: 300px;
 }
+
+/* dashboard message */
+.tolak{
+    color: #721c24;
+    background-color: #f8d7da;
+    border:2px solid #f5c6cb;
+}
+
+.terima{
+    color: #155724;
+    background-color: #b7e6c2;
+    border:2px solid #97e3a9;
+}
+
+.title-message{
+    background-color: #dddddd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    color: black;
+    padding: 7px 0 7px 8px;
+    font-weight: 400;
+}
+
+.message{
+    width: 45%;
+}
+
+.message-title{
+    width: 95%;
+    overflow: hidden;
+    display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* end dashboard message */
 
 /* form news */
 #foto{
@@ -603,6 +638,18 @@ textarea{
     }
 }
 
+@media screen and (max-width:860px) {
+    .cardw{
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:800px){
+    .pemberitahuan {
+        font-size: 10px;
+    }
+}
+
 
 @media screen and (max-width:500px) {
     .container-fluid .container {
@@ -637,10 +684,40 @@ textarea{
     .box-cardw{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
     }
 
     .cardw{
-        width: 100%;
+        width: 80%;
+    }
+
+    .message{
+        width:80%;
+    }
+
+    .polar-message{
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items:center;
+        row-gap:25px;
+        padding:10px 0 10px 0;
+        
+    }
+
+    .textw{
+        width: 80%;
+        text-align: center;
+    }
+
+    .polar-message .polar{
+        width: 80%;
+    }
+
+    .polar-message .card-message{
+        padding: 5px 0 7px 0;
     }
 }
 

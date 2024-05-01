@@ -54,7 +54,7 @@ const isTablePending = (data, props) => {
                     });
                     return;
                 } else {
-                    const response = await Inertia.post(route('delete.news', id));
+                    const response = await Inertia.post(route('delete.news', id), { message });
                 }
             }
         } catch (error) {

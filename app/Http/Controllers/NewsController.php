@@ -71,6 +71,7 @@ class NewsController extends Controller
     public function total(News $news)
     {
         $waktu = Carbon::now()->subHours(24);
+        $user = Auth::user();
 
         $totalBerita = $news::where('author', auth()->user()->name)->count();
         $totalBeritaHariIni = $news::where('author', auth()->user()->name)
@@ -81,10 +82,24 @@ class NewsController extends Controller
         $totalConfirm = ConfirmNews::where('user_name', auth()->user()->name)->count();
         // end polar chart
 
+        // pesan admin
+        $pesanReject = RejectNews::where('user_name', $user->name)->get()->map(function ($pesan) {
+            $pesan->type = 'reject';
+            return $pesan;
+        });
+        $pesanConfirm = ConfirmNews::where('user_name', $user->name)->get()->map(function ($pesan) {
+            $pesan->type = 'confirm';
+            return $pesan;
+        });
+
+        $pesanAdmin = compact('pesanReject', 'pesanConfirm');
+        // end pesan admin
+
         $total = compact('totalBerita', 'totalBeritaHariIni', 'totalRejected', 'totalConfirm');
 
         return Inertia::render('Dashboard', [
-            'total' => $total
+            'total' => $total,
+            'pesanAdmin' => $pesanAdmin
         ]);
     }
 

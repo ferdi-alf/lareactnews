@@ -16,7 +16,7 @@ export default function Dashboard(props) {
         >
             <Head title="Dashboard" />
             <div className="py-12 flex flex-wrap justify-center items-center flex-col h-full">
-                <DataDashboard total={props.total} />
+                <DataDashboard total={props.total} pesan={props.pesanAdmin} />
             </div>
 
         </ AuthenticatedLayout >

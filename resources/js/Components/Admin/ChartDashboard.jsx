@@ -4,6 +4,8 @@ import { formatDistanceToNow } from 'date-fns';
 import '../../../../public/css/style.css';
 
 const ChartDashboard = ({ chart, fromUsers }) => {
+    console.log(typeof fromUsers);
+
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     const dataByMonth = {};
@@ -23,22 +25,24 @@ const ChartDashboard = ({ chart, fromUsers }) => {
         return <span>{timeAgo}</span>;
     };
 
-    const userNews = fromUsers.map((user, index) => (
-        <div className="card-news" key={index}>
-            <p style={{ fontWeight: "bold", color: "#555", fontFamily: "Ubuntu, sans-serif" }}>{user.author}</p>
-            <p style={{ fontSize: "13px" }}>{user.email}</p>
-            <p className='truncate' style={{ fontWeight: "600", color: "#888" }}>{user.title}</p>
-            <p className="text-end" style={{ fontSize: "14px" }}>
-                <HumanReadableTime timestamp={user.created_at} />
-            </p>
-        </div>
-    ));
+    const userNews = Object.keys(fromUsers).length > 0 && (
+        Object.values(fromUsers).map((user, index) => (
+            <div className="card-news" key={index}>
+                <p style={{ fontWeight: "bold", color: "#555", fontFamily: "Ubuntu, sans-serif" }}>{user.author}</p>
+                <p style={{ fontSize: "13px" }}>{user.email}</p>
+                <p className='truncate' style={{ fontWeight: "600", color: "#888" }}>{user.title}</p>
+                <p className="text-end" style={{ fontSize: "14px" }}>
+                    <HumanReadableTime timestamp={user.created_at} />
+                </p>
+            </div>
+        ))
+    );
 
     return (
         <div className='box-chart'>
             <div className="card-chart">
                 <div className='chart'>
-                    <p>Statisik Berita Perbulan</p>
+                    <p style={{ padding: "0 0 5px 7px" }}>Statisik Berita Perbulan</p>
                     <LineChart
                         width={1000}
                         height={300}
