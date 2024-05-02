@@ -108,13 +108,13 @@ const DataDashboard = ({ total, pesan }) => {
                 </div>
             </div>
 
-            <div className="flex flex-wra justify-around polar-message" style={{ height: "100%" }}>
+            <div className="flex flex-wrap justify-between polar-message" style={{ height: "100%", width: "90%" }}>
                 <div className="bg-white overflow-x-auto polar w-auto">
                     <canvas id="polarChart" className=""></canvas>
                 </div>
-                <div className="  bg-white message" style={{ borderRadius: "8px" }}>
+                <div className=" bg-white message" style={{ borderRadius: "8px" }}>
                     <div className="title-message">Pesan untuk berita</div>
-                    <div className="flex overflow-x-auto flex-col gap-y-2 card-message" style={{ height: "300px", width: "95%", padding: "5px 0 7px 8px" }}>
+                    <div className="flex overflow-x-auto flex-col gap-y-2 card-message" style={{ width: "95%", padding: "5px 0 7px 8px" }}>
                         {renderAllPesanReject}
                     </div>
                 </div>

@@ -9,11 +9,15 @@ import Logo from '../../../public/images/logo-portal.png'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList, faGear, faHouse, faNewspaper, faUserSecret, faUser, faAngleDown, faAngleRight, faSatelliteDish, faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+
 
 
 const TransisiHalaman = ({ children }) => {
     const [previousPath, setPreviousPath] = useState(null);
     const location = useLocation();
+
 
     useEffect(() => {
         if (previousPath !== location.pathname) {
@@ -36,12 +40,13 @@ TransisiHalaman.propTypes = {
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showSidebar, setShowSidebar] = useState(true);
 
 
     return (
         <div className=" bg-gray-100 lord">
             {/* sidebar */}
-            <div className="sidebar usr  bg-gray-300">
+            <div className={`sidebar usr bg-white ${showSidebar ? '' : 'hidden'}`}>
                 <div className="box-sidebar">
                     <div className="image bg-slate-400">
                         <img src={Logo} alt="" />
@@ -60,15 +65,22 @@ export default function Authenticated({ user, header, children }) {
                             <Link>Chart data</Link>
                         </li>
                     </ul>
+                    <div className={`icon-usr`} onClick={() => setShowSidebar(!showSidebar)}>
+                        <FontAwesomeIcon icon={faList} />
+                    </div>
                 </div>
             </div>
             {/* end sidebar */}
+
             {/* side content */}
-            <div className="sidecontent">
+            <div className={`sidecontent ${!showSidebar ? 'full' : ''}`}>
                 <nav className="bg-white border-b border-gray-100">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16">
-                            <div className="flex">
+                            <div className="flex" style={{ width: "20%" }}>
+                                <div className={`icon-use ${showSidebar ? 'none' : ''}`} onClick={() => setShowSidebar(!showSidebar)}>
+                                    <FontAwesomeIcon icon={faAngleRight} />
+                                </div>
                                 <div className="shrink-0 flex items-center">
                                     <Link href="/">
                                         <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
@@ -184,6 +196,6 @@ export default function Authenticated({ user, header, children }) {
 
             </div>
             {/* end side content */}
-        </div>
+        </div >
     );
 }
