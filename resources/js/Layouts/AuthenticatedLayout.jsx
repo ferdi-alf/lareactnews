@@ -41,28 +41,54 @@ TransisiHalaman.propTypes = {
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
     const [showSidebar, setShowSidebar] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowWidth(window.innerWidth);
+            setShowSidebar(window.innerWidth > 769);
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
 
 
     return (
         <div className=" bg-gray-100 lord">
             {/* sidebar */}
-            <div className={`sidebar usr bg-white ${showSidebar ? '' : 'hidden'}`}>
+            <div className={`sidebar usr bg-white ${showSidebar ? 'muncul' : 'hidden'}`}>
                 <div className="box-sidebar">
-                    <div className="image bg-slate-400">
+                    <div className="image">
                         <img src={Logo} alt="" />
                     </div>
                     <ul className="box-link">
-                        <li>
-                            <Link href={route('dashboard')}>Dashboard</Link>
+                        <li style={{ borderTop: "1.5px solid gray", borderBottom: "1.5px solid gray" }}>
+                            <Link href={route('dashboard')} className='route'>
+                                <FontAwesomeIcon icon={faHouse} style={{ fontSize: "21px" }} />
+                                Dashboard
+                            </Link>
+                        </li>
+                        <li style={{ marginTop: "25px" }}>
+                            <Link href={route('formnews')} className='route'>
+                                <FontAwesomeIcon icon={faArrowUpFromBracket} style={{ fontSize: "21px" }} />
+                                Update Berita
+                            </Link>
                         </li>
                         <li>
-                            <Link href={route('formnews')}>Update Berita</Link>
+                            <Link href={route('mynews')} className='route'>
+                                <FontAwesomeIcon icon={faNewspaper} style={{ fontSize: "21px" }} />
+                                Berita Saya
+                            </Link>
                         </li>
                         <li>
-                            <Link href={route('mynews')}>Berita Saya</Link>
-                        </li>
-                        <li>
-                            <Link>Chart data</Link>
+                            <Link href={route('profile.edit')} className='route' >
+                                <FontAwesomeIcon icon={faGear} style={{ fontSize: "21px" }} />
+                                Settings
+                            </Link>
                         </li>
                     </ul>
                     <div className={`icon-usr`} onClick={() => setShowSidebar(!showSidebar)}>
@@ -78,7 +104,7 @@ export default function Authenticated({ user, header, children }) {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16">
                             <div className="flex" style={{ width: "20%" }}>
-                                <div className={`icon-use ${showSidebar ? 'none' : ''}`} onClick={() => setShowSidebar(!showSidebar)}>
+                                <div className={`icon-us ${showSidebar && windowWidth > 640 ? 'none' : ''}`} onClick={() => setShowSidebar(!showSidebar)}>
                                     <FontAwesomeIcon icon={faAngleRight} />
                                 </div>
                                 <div className="shrink-0 flex items-center">

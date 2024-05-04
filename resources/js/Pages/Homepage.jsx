@@ -12,15 +12,35 @@ import { useState, useEffect } from 'react';
 
 
 export default function Homepage(props) {
-    console.log('props: ', props)
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
-        setTimeout(() => {
+        setLoading(true);
+
+        const timeout = setTimeout(() => {
             setLoading(false);
-        }, 3000)
-        return;
-    }, [])
+        }, 10000);
+
+        fetchDataFromServer()
+            .then(() => {
+                clearTimeout(timeout);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                clearTimeout(timeout);
+                setLoading(false);
+            });
+    }, []);
+
+    const fetchDataFromServer = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+            }, 2000);
+        });
+    };
 
     return (
         <div className='min-h-screen main'>
@@ -55,11 +75,14 @@ export default function Homepage(props) {
                     {/* Cara mengambil data dari database */}
                     {loading && <SkeletonLoader className="skeleton-newslist" />}
 
-                    {!loading && <NewsList news={props.news.data} />}
-
-                    <div className="flex justify-center items-center">
-                        <Paginator meta={props.news.meta} />
-                    </div>
+                    {!loading && (
+                        <>
+                            < NewsList news={props.news.data} />
+                            <div className="flex justify-center items-center">
+                                <Paginator meta={props.news.meta} />
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

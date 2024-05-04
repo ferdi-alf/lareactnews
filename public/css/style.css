@@ -373,11 +373,27 @@ select {
 
 .box-link li {
     padding: 5px;
-    border-bottom: 2px solid black;
     width: 95%;
     color: black;
     font-weight: bold;
     transition: 2s;
+}
+
+
+.box-link li .route{
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 10px;
+    padding: 9px 0 9px 9px;
+    width: 95%;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.box-link li .route:hover{
+    border-radius: 8px;
+    background-color: #a09e9e;
 }
 
 .box-link li:first-child {
@@ -413,6 +429,7 @@ select {
 .cardw .textw p {
     font-size: 23px;
     font-weight: bold;
+    color: black;
 }
 
 .cardw .box-icon .icon {
@@ -423,6 +440,7 @@ select {
 .boxw {
     height: 300px;
 }
+
 
 /* dashboard message */
 .tolak {
@@ -635,25 +653,25 @@ textarea {
     box-shadow: 0px 0px 10px 7px #a13ecb;
 }
 
-.sidebar.usr.active {
-    display: block;
-}
+
 
 .icon-usr {
     width: 40px;
     height: 40px;
     background-color: white;
-    color: gray;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 22px;
     position: absolute;
-    top: 2px;
+    top: 4px;
     left: 230px;
 }
 
-.icon-use {
+
+
+.icon-us {
     width: 40px;
     height: 40px;
     color: black;
@@ -669,8 +687,18 @@ textarea {
     background-color: white;
 }
 
-.icon-use.none {
+.icon-us.none{
     display: none;
+}
+
+.card-message {
+    height: 350px;
+}
+
+@media screen and (max-width:1024px) {
+    .icon-usr{
+        left: 180px;
+    }
 }
 
 @media screen and (max-width:900px) {
@@ -720,7 +748,7 @@ textarea {
     }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:769px) {
     .container-fluid .container {
         width: 100%;
     }
@@ -733,6 +761,16 @@ textarea {
 
     .container-fluid .container .card form {
         row-gap: 40px;
+    }
+
+
+
+    .sidebar.usr{
+        width: 25%;
+    }
+
+    .sidecontent {
+        width: 75%;
     }
 
     .polar-message{
@@ -783,6 +821,10 @@ textarea {
 
     .sidecontent {
         width: 100%;
+    }
+
+    .icon-us{
+        display:none;
     }
 
     .boxw {

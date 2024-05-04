@@ -112,10 +112,21 @@ class NewsController extends Controller
     // end masuk ke form berita
 
     // masuk ke mynews
-    public function mynews(News $news)
+    public function mynews(Request $request)
     {
-        $news = new NewsCollection($news::where('author', auth()->user()->name)
-            ->OrderByDesc('id')->paginate(10));
+        $newsQuery = News::where('author', auth()->user()->name)->orderByDesc('id');
+
+        if ($request->has('search')) {
+            $search = '%' . $request->search . '%';
+
+            $newsQuery->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', $search)
+                    ->orWhere('description', 'LIKE', $search)
+                    ->orWhere('category', 'LIKE', $search);
+            });
+        }
+
+        $news = $newsQuery->paginate(10);
 
         return Inertia::render('MyNews', [
             'news' => $news
