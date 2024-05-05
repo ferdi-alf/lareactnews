@@ -2,13 +2,13 @@ import { Link } from "@inertiajs/react"
 
 const Navbar = ({ user }) => {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-white">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Cuyy News</a>
+                <a className="btn btn-ghost text-xl" style={{ color: "#ef33dc" }}>Cuyy <span className="text-slate-400">News</span></a>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
-                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                    <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" style={{ border: "1px solid gray", backgroundColor: "#f5f2f4" }} />
                 </div>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

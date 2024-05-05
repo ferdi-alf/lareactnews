@@ -116,7 +116,8 @@ const isTablePending = (data, props) => {
                                     <td>{data.user_name}</td>
                                     <td>{data.user_email}</td>
                                     <td className='text-center flex flex-nowrap items-center'>
-                                        <button onClick={() => handlePost(data.id)} className="mx-2 btn border-none bg-sky-400 text-white">Post</button>
+                                        <Link href={route('view.pending', {id: data.id})} className=" mx-2 btn bg-sky-500 text-white border-none">Lihat</Link>
+                                        <button onClick={() => handlePost(data.id)} className="mx-2 btn border-none bg-green-400 text-white">Post</button>
                                         <button onClick={() => handleDelete(data.id)} method='post' className='btn bg-rose-500 text-white border-none'>Hapus</button>
                                     </td>
                                 </tr>
@@ -129,7 +130,7 @@ const isTablePending = (data, props) => {
     );
 }
 
-const noTableNews = () => {
+const noTableNews = (data) => {
     return (
         <div className='box-table'>
             <div className="tableP">
@@ -154,7 +155,7 @@ const noTableNews = () => {
 }
 
 const TablePending = ({ data, props }) => {
-    return !data > 1 ? noTableNews() : isTablePending(data, props);
+    return data.length === 0 ? noTableNews() : isTablePending(data, props);
 }
 
 export default TablePending;

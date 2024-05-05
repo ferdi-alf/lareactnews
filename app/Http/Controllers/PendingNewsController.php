@@ -108,7 +108,7 @@ class PendingNewsController extends Controller
     }
     // end post berita
 
-    // toal berita
+    // tolak berita
     public function delete($id, Request $request)
     {
 
@@ -132,4 +132,17 @@ class PendingNewsController extends Controller
         return redirect()->back()->withErrors(['Berita berhasil diajukan untuk ditinjau.']);
     }
     // end tolak berita
+    // lihat berita
+    public function view($id)
+    {
+        $admin = Auth::guard('admin')->user();
+        $news = PendingNews::findOrFail($id);
+        return Inertia::render('Admin/ViewPending', [
+            'auth' => [
+                'admin' => $admin
+            ],
+            'data' => $news
+        ]);
+    }
+    // end lihat berita
 }

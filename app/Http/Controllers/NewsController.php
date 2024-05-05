@@ -61,8 +61,6 @@ class NewsController extends Controller
             $news->views += 1;
             $news->save();
         }
-
-        return response()->json(['message' => 'Berhasil']);
     }
     // end view
 

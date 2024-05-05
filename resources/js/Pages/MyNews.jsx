@@ -59,14 +59,14 @@ export default function MyNews(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {loading ? <SkeletonMyNews /> : (
                         <>
-                            <div className="flex flex-col shadow-xl overflow-x-auto rounded-md justify-center p-6 bg-white border-b border-gray-200">
-                                <div className="flex items-center justify-end w-full">
+                            <div className="flex flex-col shadow-xl overflow-x-auto rounded-md justify-center p-6 bg-white border-b border-gray-200" style={{ height: "100vh" }}>
+                                <div className="flex items-center justify-end w-full" >
                                     <form class="flex gap-x-5 form-search" onSubmit={handleForm} role="search">
                                         <input class="form-control" onChange={handleSearch} value={search} type="search" placeholder="Search" aria-label="Search" style={{ borderRadius: "8px", width: "80%" }} />
                                         <button class="btn btn-outline-success" type="submit" style={{ background: "transparent", border: "1px solid #97e3a9", color: "#155724" }}>Search</button>
                                     </form>
                                 </div>
-                                <div className="w-full overflow-x-auto" style={{ height: "450px" }}>
+                                <div className="w-full overflow-x-auto">
                                     <table className="min-w-full table table-striped overflow-x-auto" style={{ marginBottom: "10px" }}>
                                         <thead>
                                             <tr>

@@ -35,7 +35,7 @@ const isNews = (news) => {
                         <div className="title">
                             <div className="titleT ">{data.title}</div>
                             <div className="badge view ">
-                                <FontAwesomeIcon icon={faEye} />
+                                <FontAwesomeIcon icon={faEye} style={{ fontSize: "10px" }} />
                                 {data.views}
                             </div>
                         </div>

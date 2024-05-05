@@ -31,6 +31,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/pending-news', [PendingNewsController::class, 'pendingNews'])->name('pending.news');
     Route::post('/post-news/id/{id}', [PendingNewsController::class, 'postPending'])->name('post.pending');
     Route::post('/news/delete/{id}', [PendingNewsController::class, 'delete'])->name('delete.news');
+    Route::get('pending/view/id/{id}', [PendingNewsController::class, 'view'])->name('view.pending');
     // end pending news
     // akses admin
     Route::get('/data-admin', [AdminController::class, 'getAdmin'])->name('data.admin');

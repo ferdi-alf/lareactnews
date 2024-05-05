@@ -78,9 +78,6 @@ export default function Homepage(props) {
                     {!loading && (
                         <>
                             < NewsList news={props.news.data} />
-                            <div className="flex justify-center items-center">
-                                <Paginator meta={props.news.meta} />
-                            </div>
                         </>
                     )}
                 </div>
