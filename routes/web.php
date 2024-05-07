@@ -35,6 +35,8 @@ Route::middleware('auth.admin')->group(function () {
     // end pending news
     // akses admin
     Route::get('/data-admin', [AdminController::class, 'getAdmin'])->name('data.admin');
+    Route::get('tambah/data-admin', [AdminController::class, 'GetAddAdmin'])->name('add.admin');
+    Route::post('/post/add-admin', [AdminController::class, 'addAdmin'])->name('post.add.admin');
 });
 
 // middleware user

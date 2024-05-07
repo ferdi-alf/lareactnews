@@ -4,6 +4,7 @@ import { Inertia } from '@inertiajs/inertia';
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 
+
 const isTablePending = (data, props) => {
     console.log("props: ", props)
     const handlePost = async (id) => {
@@ -72,15 +73,6 @@ const isTablePending = (data, props) => {
 
     return (
         <div className='box-table'>
-            {Object.keys(props.errors).length > 0 && (
-                Object.values(props.errors).map((error, index) => {
-                    Swal.fire({
-                        title: "Succes",
-                        text: "berita berhasil di tolak, pesan terkirim ke dashboard user",
-                        icon: "success"
-                    })
-                })
-            )}
             <div className="tableP">
                 <table className="table table-striped">
                     <thead>
@@ -116,7 +108,7 @@ const isTablePending = (data, props) => {
                                     <td>{data.user_name}</td>
                                     <td>{data.user_email}</td>
                                     <td className='text-center flex flex-nowrap items-center'>
-                                        <Link href={route('view.pending', {id: data.id})} className=" mx-2 btn bg-sky-500 text-white border-none">Lihat</Link>
+                                        <Link href={route('view.pending', { id: data.id })} className=" mx-2 btn bg-sky-500 text-white border-none">Lihat</Link>
                                         <button onClick={() => handlePost(data.id)} className="mx-2 btn border-none bg-green-400 text-white">Post</button>
                                         <button onClick={() => handleDelete(data.id)} method='post' className='btn bg-rose-500 text-white border-none'>Hapus</button>
                                     </td>

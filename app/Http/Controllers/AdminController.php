@@ -44,10 +44,11 @@ class AdminController extends Controller
         ]);
     }
 
+    // handle admin Data
     public function getAdmin()
     {
         $admin = Auth::guard('admin')->user();
-        $dataAdmin = Admin::get();
+        $dataAdmin = new NewsCollection(Admin::orderByDesc('id')->paginate(5));
 
         return Inertia::render('Admin/DataAdmin', [
             'auth' => [
@@ -56,4 +57,41 @@ class AdminController extends Controller
             'dataAdmin' => $dataAdmin
         ]);
     }
+
+    public function GetAddAdmin()
+    {
+        $admin = Auth::guard('admin')->user();
+        return Inertia::render('Admin/AddAdmin', [
+            'auth' => [
+                'admin' => $admin
+            ]
+        ]);
+    }
+
+    public function addAdmin(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'confirmPassword' => 'required|same:password'
+        ], [
+            'name.required' => 'nama tidak boleh kosong',
+            'email.required' => 'email tidak boleh kosong',
+            'email.email' => 'email tidak valid',
+            'password.required' => 'password tidak boleh kosong',
+            'password.min' => 'password minimal 8 karakter',
+            'confirmPassword.required' => 'confirm password tak boleh kosong',
+            'confirmPassword.same' => 'konfirmasi password dan password harus sama'
+        ]);
+
+        $postAdmin = new Admin();
+        $postAdmin->name = $validate['name'];
+        $postAdmin->email = $validate['email'];
+        $postAdmin->password = $validate['password'];
+        $postAdmin->save();
+
+        return redirect()->back()->withErrors(['berhasil menambah data admin']);
+    }
+    // end handle admin Data
 }

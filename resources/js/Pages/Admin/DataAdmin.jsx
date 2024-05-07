@@ -11,7 +11,7 @@ export default function DataAdmin(props) {
             <Head title="Data Admin" />
 
             <div className="py-12 flex flex-wrap justify-center items-center flex-col" style={{ height: "100vh" }}>
-                <p>Helllo Word</p>
+                <TableAdmin data={props.dataAdmin.data} />
             </div>
         </AuthenticatedAdminLayout>
     )
