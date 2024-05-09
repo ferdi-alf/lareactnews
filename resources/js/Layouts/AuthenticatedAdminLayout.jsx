@@ -93,7 +93,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                             <FontAwesomeIcon icon={faUserSecret} />
                                             Admin
                                         </Link>
-                                        <Link className='li'>
+                                        <Link className='li' href={route('data.user')}>
                                             <FontAwesomeIcon icon={faUser} />
                                             User
                                         </Link>

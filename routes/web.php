@@ -37,6 +37,11 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/data-admin', [AdminController::class, 'getAdmin'])->name('data.admin');
     Route::get('tambah/data-admin', [AdminController::class, 'GetAddAdmin'])->name('add.admin');
     Route::post('/post/add-admin', [AdminController::class, 'addAdmin'])->name('post.add.admin');
+
+    // akses user
+    Route::get('/data-user', [AdminController::class, 'getUser'])->name('data.user');
+    Route::get('/add/data-user', [AdminController::class, 'getAddUser'])->name('add.user');
+    Route::post('/post/add-user', [AdminController::class, 'addUser'])->name('post.add.user');
 });
 
 // middleware user

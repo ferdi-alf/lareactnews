@@ -94,4 +94,54 @@ class AdminController extends Controller
         return redirect()->back()->withErrors(['berhasil menambah data admin']);
     }
     // end handle admin Data
+
+    // handle data eser
+    public function getUser()
+    {
+        $admin = Auth::guard('admin')->user();
+        $data = new NewsCollection(User::OrderByDesc('id')->paginate('5'));
+
+        return Inertia::render('Admin/DataUser', [
+            'auth' => [
+                'admin' => $admin
+            ],
+            'dataUser' => $data
+        ]);
+    }
+
+    public function getAddUser()
+    {
+        $admin = Auth::guard('admin')->user();
+        return Inertia::render('Admin/AddUser', [
+            'auth' => [
+                'admin' => $admin
+            ]
+        ]);
+    }
+    public function addUser(Request $request)
+    {
+        $validasi = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'confirmPassword' => 'required|same:password|min:8'
+        ], [
+            'name.required' => 'nama tidak boleh kosong',
+            'email.required' => 'email tidak boleh kosong',
+            'email.email' => 'format email tidak valid',
+            'password.required' => 'password tidak boleh kosong',
+            'password.min' => 'password minimal 8 karakter',
+            'confirmPassword.required' => 'konfirmasi password tidak boleh kosong',
+            'confirmPassword.same' => 'password dan korfirmasi password harus sama'
+        ]);
+
+        $post = new User();
+        $post->name = $validasi['name'];
+        $post->email = $validasi['email'];
+        $post->password = $validasi['password'];
+        $post->save();
+
+        return redirect()->back();
+    }
+    // end handle data user
 }

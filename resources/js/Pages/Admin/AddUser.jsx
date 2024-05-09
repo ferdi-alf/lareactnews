@@ -5,31 +5,27 @@ import { useState } from "react";
 import '../../../../public/css/style.css'
 
 
-export default function AddAdmin(props) {
-    console.log("props", props);
+export default function AddUser(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const { errors, ...otherProps } = props;
-
+    const {errors, ...otherProps} = props
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const data = new FormData;
         data.append('name', name);
         data.append('email', email);
         data.append('password', password);
         data.append('confirmPassword', confirmPassword);
-        Inertia.post('/post/add-admin', data)
+        Inertia.post('/post/add-user', data);
     }
-
     return (
         <AuthenticatedAdminLayout
             admin={props.auth.admin}
         >
-            <Head title="add admin" />
+            <Head title="add user" />
 
 
             <div className="py-12 flex flex-wrap justify-center items-center flex-col h-full">
