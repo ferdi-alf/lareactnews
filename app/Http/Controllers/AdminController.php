@@ -141,6 +141,32 @@ class AdminController extends Controller
         $post->password = $validasi['password'];
         $post->save();
 
+        return redirect()->route('data.user');
+    }
+
+    public function updateUser(Request $request)
+    {
+        $update = [];
+        if ($request->name !== null) {
+            $update['name'] = $request->name;
+        }
+        if ($request->email !== null) {
+            $update['email'] = $request->email;
+        }
+        if ($request->password !== null) {
+            $update['password'] = $request->password;
+        }
+
+        User::where('id', $request->id)->update($update);
+
+        return redirect()->back();
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->delete();
+
         return redirect()->back();
     }
     // end handle data user

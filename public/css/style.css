@@ -898,16 +898,13 @@ textarea {
 
 .sidebar.ad {
     transition: transform 0.3s ease;
-    /* Animasi transisi ketika transform diubah */
     transform: translateX(-100%);
-    /* Sidebar akan disembunyikan di luar layar pada awalnya */
     width: 0;
     position: absolute;
 }
 
 .sidebar.ad.active {
     transform: translateX(0);
-    /* Menggeser sidebar ke posisi 0 saat aktif */
     width: 20%;
     height: 100%;
     z-index: 800;
@@ -1473,15 +1470,32 @@ textarea {
 
 /* user */
 .modalU {
+    display: none;
+}
+
+
+.modalU.active{
     top:0;
     left:0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.543);
+    background-color: rgba(0, 0, 0, 0.637);
+    backdrop-filter: blur(10px);
     position: fixed;
     display:flex;
     justify-content:center;
     align-items:center;
+    animation: animate 0.2s ease;
+}
+
+@keyframes animate {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to{
+        transform: translateY(0);
+    }
 }
 
 .box-modal{
@@ -1501,6 +1515,15 @@ textarea {
     padding: 0 10px 0 10px;
     margin-bottom: 15px;
 }
+
+.close{
+    width: 35px;
+    border-radius: 7px;
+}
+
+.close:hover{
+    background-color: rgb(233, 61, 61);
+}
 /* end user */
 
 
@@ -1518,6 +1541,7 @@ textarea {
         width: 200px;
         height: 100%;
     }
+
 }
 
 @media (max-width:750px) {
@@ -1529,6 +1553,10 @@ textarea {
     .sidebar.ad.active {
         width: 200px;
         height: 100%;
+    }
+
+    .box-modal{
+        width: 55%;
     }
 }
 
@@ -1564,6 +1592,12 @@ textarea {
         width: 95%;
         height: 360px;
         margin-top: 30px;
+    }
+}
+
+@media(max-width:500px) {
+    .box-modal{
+        width:80%;
     }
 }
 

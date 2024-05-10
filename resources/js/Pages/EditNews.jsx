@@ -57,7 +57,10 @@ export default function EditNews(props) {
                 <div className="card-body">
                     <form onSubmit={handleForm} className='flex flex-col justify-center p-6 bg-white border-b border-gray-200' action="">
                         <input type="file" onChange={handleImage} className="file-input bg-white file-input-bordered file-input-md w-96" />
-                        <input type="text" onChange={handleTitle} defaultValue={props.myNews ? props.myNews.title : ''}
+                        <input
+                            type="text"
+                            onChange={handleTitle}
+                            defaultValue={props.myNews ? props.myNews.title : ''}
                             placeholder="judul" className="m-2 text-slate-600 bg-white text w-96 " />
                         <textarea onChange={handleDescription} defaultValue={props.myNews ? props.myNews.description : ''} className="m-2 text-slate-600 bg-white text textarea w-96 textarea-bordered" placeholder=" masukan Description berita"></textarea>
                         <input type="text" onChange={handleCategory} defaultValue={props.myNews ? props.myNews.category : ''} placeholder="Category" className="m-2 text-slate-600 text bg-white input input-bordered w-96 " />

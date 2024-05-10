@@ -1,12 +1,47 @@
 import { Inertia } from "@inertiajs/inertia";
 import { formatDistanceToNow } from "date-fns";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "@inertiajs/react";
+
+
 
 const isTableData = (data) => {
     const [redirect, SetRedirect] = useState(false);
-    const [modal, setModal] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedData, setSelectedData] = useState(null);
+    const [selectedId, setSelectedId] = useState(null);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleViewClick = (id) => {
+        const foundData = data.find((item) => item.id === id);
+        if (foundData) {
+            setSelectedData(foundData);
+            setSelectedId(id);
+            setModalOpen(true);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        Inertia.post(`/update/user/id/${selectedId}`, formData);
+    }
+
+    const handleDelete = (id) => {
+        Inertia.delete(`/delete/user/id/${id}`)
+    }
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
+
     const handleRedirectTo = () => {
         SetRedirect(true);
     }
@@ -55,9 +90,9 @@ const isTableData = (data) => {
                                             <HumanReadableTime timestamp={data.created_at} />
                                         </div>
                                     </td>
-                                    <td>
-                                        <button onClick={() => setModal(true)} className="mx-2 btn border-none bg-sky-500 text-white">View</button>
-                                        <button className="btn bg-rose-500 text-white border-none">Hapus</button>
+                                    <td className="flex flex-nowrap">
+                                        <button onClick={() => handleViewClick(data.id)} className="mx-2 btn border-none bg-sky-500 text-white">View</button>
+                                        <button onClick={() => handleDelete(data.id)} className="btn  bg-rose-500 text-white border-none">Hapus</button>
                                     </td>
                                 </tr>
                             )
@@ -65,24 +100,47 @@ const isTableData = (data) => {
                     </tbody>
                 </table>
             </div>
-            {modal && (
-                <div className="modalU">
-                    <div className="box-modal">
-                        <div className="w-full text-black text-end text-bold" style={{ marginBottom: "12px", fontSize: "22px" }}>
-                            <FontAwesomeIcon icon={faXmark} onClick={() => setModal(false)} className="cursor-pointer" />
-                        </div>
+
+            <div className={modalOpen ? 'modalU active' : 'modalU'}>
+                <div className="box-modal">
+                    <div className="w-full text-black text-end text-bold" style={{ marginBottom: '12px', fontSize: '22px' }}>
+                        <FontAwesomeIcon icon={faXmark} onClick={handleCloseModal} className="cursor-pointer close" />
+                    </div>
+                    <form onSubmit={handleSubmit}>
                         <div className="card-modal">
-                            <input type="text" className=" bg-white text w-full" />
-                            <input type="email" className=" bg-white text w-full" />
-                            <input type="password" className=" bg-white text w-full" />
+                            <input
+                                type="text"
+                                name="name"
+                                onChange={(e) => setName(e.target.value)}
+                                defaultValue={selectedData?.name || ''}
+                                className="bg-white text w-full"
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                onChange={(e) => setEmail(e.target.value)}
+                                defaultValue={selectedData?.email || ''}
+                                className="bg-white text w-full"
+                            />
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="bg-white text w-full"
+                            />
                         </div>
                         <div className="w-full h-full flex justify-end items-center">
-                            <button className="btn bg-black rounded-md text-white">Save</button>
+                            <button
+                                className="btn bg-black rounded-md text-white">
+                                Save
+                            </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            )}
-        </div>
+            </div>
+
+
+        </div >
     )
 }
 

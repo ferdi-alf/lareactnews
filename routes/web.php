@@ -42,6 +42,8 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/data-user', [AdminController::class, 'getUser'])->name('data.user');
     Route::get('/add/data-user', [AdminController::class, 'getAddUser'])->name('add.user');
     Route::post('/post/add-user', [AdminController::class, 'addUser'])->name('post.add.user');
+    Route::post('/update/user/id/{id}', [AdminController::class, 'updateUser'])->name('update.user');
+    Route::delete('/delete/user/id/{id}', [AdminController::class, 'deleteUser'])->name('dele.user');
 });
 
 // middleware user
