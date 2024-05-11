@@ -12,6 +12,8 @@ const SkeletonMyNews = () => {
             <Skeleton height={70} />
             <Skeleton height={70} />
             <Skeleton height={70} />
+            <Skeleton height={70} />
+            <Skeleton height={70} />
             {/* Sesuaikan jumlah dan properti skeleton sesuai kebutuhan */}
         </div>
     );

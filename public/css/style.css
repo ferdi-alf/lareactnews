@@ -1526,6 +1526,20 @@ textarea {
 }
 /* end user */
 
+/* view pending */
+.aksi{
+    position: fixed;
+    bottom: 0;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.box-aksi{
+    column-gap: 12px;
+}
+/* end view pending */
 
 @media (max-width:882px) {
     .content.active .cont {

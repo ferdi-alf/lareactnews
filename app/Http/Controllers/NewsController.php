@@ -80,24 +80,35 @@ class NewsController extends Controller
         $totalConfirm = ConfirmNews::where('user_name', auth()->user()->name)->count();
         // end polar chart
 
-        // pesan admin
-        $pesanReject = RejectNews::where('user_name', $user->name)->get()->map(function ($pesan) {
-            $pesan->type = 'reject';
-            return $pesan;
-        });
-        $pesanConfirm = ConfirmNews::where('user_name', $user->name)->get()->map(function ($pesan) {
-            $pesan->type = 'confirm';
-            return $pesan;
-        });
+        $waktu = Carbon::now()->startOfWeek();
+        $endWaktu = Carbon::now()->endOfWeek();
 
-        $pesanAdmin = compact('pesanReject', 'pesanConfirm');
+        // pesan admin
+        $allPesan = RejectNews::where('user_name', $user->name)
+            ->whereBetween('created_at', [$waktu, $endWaktu])
+            ->orderBy('created_at', 'desc')
+            ->get()->map(function ($pesan) {
+                $pesan->type = 'reject';
+                return $pesan;
+            })->concat(
+                ConfirmNews::where('user_name', $user->name)
+                    ->whereBetween('created_at', [$waktu, $endWaktu])
+                    ->orderBy('created_at', 'desc')
+                    ->get()->map(function ($pesan) {
+                        $pesan->type = 'confirm';
+                        return $pesan;
+                    })
+            );
+
+
+        $allPesan = $allPesan->sortByDesc('created_at');
         // end pesan admin
 
         $total = compact('totalBerita', 'totalBeritaHariIni', 'totalRejected', 'totalConfirm');
 
         return Inertia::render('Dashboard', [
             'total' => $total,
-            'pesanAdmin' => $pesanAdmin
+            'pesanAdmin' => $allPesan
         ]);
     }
 
@@ -132,40 +143,6 @@ class NewsController extends Controller
     }
     // end masuk ke mynews
 
-    // logika untuk edit/update data
-    public function edit(News $news, Request $request)
-    {
-        return Inertia::render('EditNews', [
-            'myNews' => $news->find($request->id)
-        ]);
-    }
-    public function update(News $news, Request $request)
-    {
-        // Validasi data yang diterima dari front end
-        $updateData = [];
-        if ($request->title !== null) {
-            $updateData['title'] = $request->title;
-        }
-        if ($request->description !== null) {
-            $updateData['description'] = $request->description;
-        }
-        if ($request->category !== null) {
-            $updateData['category'] = $request->category;
-        }
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('/public/images', $imageName);
-
-            $updateData['foto'] = $imageName;
-        }
-
-        News::where('id', $request->id)->update($updateData);
-
-        return redirect()->route('dashboard')->with('message', 'Update Berita Berhasil');
-    }
-    // end update
 
     // masuk ke sesi hapus data
 

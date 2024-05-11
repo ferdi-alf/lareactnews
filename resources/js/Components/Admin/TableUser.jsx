@@ -3,7 +3,8 @@ import { formatDistanceToNow } from "date-fns";
 import { useState, useEffect } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "@inertiajs/react";
+import Swal from 'sweetalert2';
+
 
 
 
@@ -15,6 +16,16 @@ const isTableData = (data) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [search, setSearch] = useState('');
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleForm = async (e) => {
+        e.preventDefault();
+        await Inertia.get('/data-user', { search })
+    }
 
     const handleViewClick = (id) => {
         const foundData = data.find((item) => item.id === id);
@@ -34,8 +45,28 @@ const isTableData = (data) => {
         Inertia.post(`/update/user/id/${selectedId}`, formData);
     }
 
-    const handleDelete = (id) => {
-        Inertia.delete(`/delete/user/id/${id}`)
+    const handleDelete = async (id) => {
+        try {
+            const { isConfirmed } = await Swal.fire({
+                icon: "warning",
+                title: "Warning!!",
+                text: "Yakin ingin menghapus User ini?",
+                confirmButtonText: "Yes",
+                confirmButtonColor: "#3085d6",
+                showCancelButton: true,
+                cancelButtonColor: "#d33"
+            })
+            if (isConfirmed) {
+                await Inertia.delete(`delete/user/id/${id}`)
+            }
+        } catch (error) {
+            console.error("Error: ", error)
+            Swal.fire({
+                title: "Error!",
+                text: "An error occurred while processing the request. Please try again.",
+                icon: "error"
+            });
+        }
     }
 
     const handleCloseModal = () => {
@@ -54,12 +85,20 @@ const isTableData = (data) => {
         return <span>{timeAgo}</span>
     }
 
+
+
     return (
         <div className="box-table">
             <div className="button-add flex justify-star items-center" style={{ width: "90%" }}>
                 <button className="btn btn-success text-bold text-white" onClick={handleRedirectTo}>Tambah Data +</button>
             </div>
             <div className="tableP" style={{ width: "90%" }}>
+                <div className="flex items-center justify-end w-full" >
+                    <form class="flex gap-x-5 form-search" onSubmit={handleForm} role="search">
+                        <input class="form-control" onChange={handleSearch} value={search} type="search" placeholder="Search" aria-label="Search" style={{ borderRadius: "8px", width: "80%" }} />
+                        <button class="btn btn-outline-success" type="submit" style={{ background: "transparent", border: "1px solid #97e3a9", color: "#155724" }}>Search</button>
+                    </form>
+                </div>
                 <table className="table table-striped">
                     <thead>
                         <tr>

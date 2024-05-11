@@ -104,7 +104,7 @@ class PendingNewsController extends Controller
 
         $pendingNews->delete();
 
-        return back()->with('succes', 'Succes');
+        return redirect()->route('pending.news');
     }
     // end post berita
 
@@ -129,7 +129,7 @@ class PendingNewsController extends Controller
 
         $RejectNews->delete();
 
-        return redirect()->back()->withErrors(['Berita berhasil diajukan untuk ditinjau.']);
+        return redirect()->route('pending.news')->withErrors(['Berita berhasil diajukan untuk ditinjau.']);
     }
     // end tolak berita
     // lihat berita

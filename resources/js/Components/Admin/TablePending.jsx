@@ -2,7 +2,6 @@ import { Link } from '@inertiajs/react';
 import '../../../../public/css/style.css'
 import { Inertia } from '@inertiajs/inertia';
 import Swal from 'sweetalert2';
-import { useEffect } from 'react';
 
 
 const isTablePending = (data, props) => {
@@ -40,7 +39,7 @@ const isTablePending = (data, props) => {
                 text: "Berikan pesan kepada user mengapa anda menolak berita ini",
                 input: "text",
                 icon: "warning",
-                inputPlaceholder: "masukan",
+                inputPlaceholder: "masukan pesan",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",

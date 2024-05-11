@@ -4,11 +4,19 @@ import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 
 
-
-
-
 const TableAdmin = ({ data }) => {
     const [shouldRedirectTo, setShouldRedirectTo] = useState(false);
+    const [search, setSearch] = useState('');
+
+    const handleSearch = (e) => {
+        setSearch(e.target.value)
+    }
+
+    const handleForm = async (e) => {
+        e.preventDefault();
+        await Inertia.get('/data-admin', { search })
+    }
+
     const handleRedirectTo = () => {
         setShouldRedirectTo(true);
     }
@@ -28,6 +36,12 @@ const TableAdmin = ({ data }) => {
                 <button className="btn btn-success text-bold text-white" onClick={handleRedirectTo}>Tambah Data +</button>
             </div>
             <div className="tableP" style={{ width: "90%" }}>
+                <div className="flex items-center justify-end w-full" >
+                    <form class="flex gap-x-5 form-search" onSubmit={handleForm} role="search">
+                        <input class="form-control" onChange={handleSearch} value={search} type="search" placeholder="Search" aria-label="Search" style={{ borderRadius: "8px", width: "80%" }} />
+                        <button class="btn btn-outline-success" type="submit" style={{ background: "transparent", border: "1px solid #97e3a9", color: "#155724" }}>Search</button>
+                    </form>
+                </div>
                 <table className="table table-striped">
                     <thead>
                         <tr>

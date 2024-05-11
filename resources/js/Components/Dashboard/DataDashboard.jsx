@@ -8,9 +8,9 @@ import SkeletonDashboard from "./SkeletonDashboard";
 
 
 const DataDashboard = ({ total, pesan }) => {
-    const { pesanReject, pesanConfirm } = pesan;
-    const allPesan = [...pesanReject, ...pesanConfirm];
+    const pesanArray = Object.values(pesan);
     const [loading, setLoading] = useState(true)
+    console.log(pesanArray)
 
     useEffect(() => {
         setLoading(true);
@@ -74,11 +74,13 @@ const DataDashboard = ({ total, pesan }) => {
         window.myPolarAreaChart = new Chart(ctx, chartConfig);
     }, [total]);
 
-    allPesan.sort((pesan1, pesan2) => {
+    pesanArray.sort((pesan1, pesan2) => {
         return new Date(pesan1.created_at) - new Date(pesan2.created_at);
-    })
+    });
 
-    const renderAllPesanReject = allPesan.map((pesan, index) => (
+    pesanArray.reverse();
+
+    const renderAllPesan = pesanArray.map((pesan, index) => (
         <div key={index} >
             <div className={pesan.type === 'reject' ? 'tolak' : 'terima'} style={{ borderRadius: "8px", padding: "5px 0 3px 7px" }}>
                 <p style={{ fontSize: "11px" }}>Kepada:<span style={{ fontWeight: "bold" }}>{pesan.user_name}</span></p>
@@ -142,7 +144,7 @@ const DataDashboard = ({ total, pesan }) => {
                 <div className=" bg-white message" style={{ borderRadius: "8px" }}>
                     <div className="title-message">Pesan untuk berita</div>
                     <div className="flex overflow-x-auto flex-col gap-y-2 card-message" style={{ width: "95%", padding: "5px 6px 7px 8px", }}>
-                        {renderAllPesanReject}
+                        {renderAllPesan}
                     </div>
                 </div>
             </div>

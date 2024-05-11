@@ -105,7 +105,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                     <FontAwesomeIcon icon={faNewspaper} className='icons' />
                                     <p>Panding News </p>
                                 </Link>
-                                <Link className="nav" style={{ marginTop: "7px" }}>
+                                <Link href={route('news.control')} className="nav" style={{ marginTop: "7px" }}>
                                     <FontAwesomeIcon icon={faSatelliteDish} className='icons' />
                                     <p>News Controller </p>
                                 </Link>

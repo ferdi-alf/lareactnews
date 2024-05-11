@@ -43,7 +43,13 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/add/data-user', [AdminController::class, 'getAddUser'])->name('add.user');
     Route::post('/post/add-user', [AdminController::class, 'addUser'])->name('post.add.user');
     Route::post('/update/user/id/{id}', [AdminController::class, 'updateUser'])->name('update.user');
-    Route::delete('/delete/user/id/{id}', [AdminController::class, 'deleteUser'])->name('dele.user');
+    Route::delete('/delete/user/id/{id}', [AdminController::class, 'deleteUser'])->name('delete.user');
+
+    // news controller
+    Route::get('/newscontroller', [AdminController::class, 'newsControl'])->name('news.control');
+    Route::get('/news/edit/id/{id}', [AdminController::class, 'editNews'])->name('edit.news');
+    Route::post('/news/update', [AdminController::class, 'updateNews'])->name('update.news');
+    Route::delete('/news/delete/{id}', [AdminController::class, 'deleteNews'])->name('delete.news');
 });
 
 // middleware user
@@ -59,7 +65,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // pengeditan berita
     Route::get('/news/edit', [NewsController::class, 'edit'])->name('edit.news');
-    Route::post('/news/update', [NewsController::class, 'update'])->name('update.news');
     // end dashboard
 });
 // end middleware admins

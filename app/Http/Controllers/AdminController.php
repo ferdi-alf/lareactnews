@@ -45,16 +45,27 @@ class AdminController extends Controller
     }
 
     // handle admin Data
-    public function getAdmin()
+    public function getAdmin(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $dataAdmin = new NewsCollection(Admin::orderByDesc('id')->paginate(5));
+        $data = Admin::orderByDesc('id');
+
+        if ($request->has('search')) {
+            $search = '%' . $request->search . '%';
+
+            $data->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', $search)
+                    ->orWhere('email', 'LIKE', $search);
+            });
+        }
+
+        $data = new NewsCollection($data->paginate(10));
 
         return Inertia::render('Admin/DataAdmin', [
             'auth' => [
                 'admin' => $admin
             ],
-            'dataAdmin' => $dataAdmin
+            'dataAdmin' => $data
         ]);
     }
 
@@ -96,10 +107,21 @@ class AdminController extends Controller
     // end handle admin Data
 
     // handle data eser
-    public function getUser()
+    public function getUser(Request $request)
     {
         $admin = Auth::guard('admin')->user();
-        $data = new NewsCollection(User::OrderByDesc('id')->paginate('5'));
+        $data = User::orderByDesc('id');
+
+        if ($request->has('search')) {
+            $search = '%' . $request->search . '%';
+
+            $data->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', $search)
+                    ->orWhere('email', 'LIKE', $search);
+            });
+        }
+
+        $data = new NewsCollection($data->paginate(10));
 
         return Inertia::render('Admin/DataUser', [
             'auth' => [
@@ -170,4 +192,80 @@ class AdminController extends Controller
         return redirect()->back();
     }
     // end handle data user
+
+    // news controller
+    public function newsControl(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        $news = News::orderByDesc('id');
+
+        // Memeriksa apakah ada data pencarian
+        if ($request->has('search')) {
+            $search = '%' . $request->search . '%';
+
+            $news->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', $search)
+                    ->orWhere('description', 'LIKE', $search)
+                    ->orWhere('category', 'LIKE', $search);
+            });
+        }
+
+        // Paginasi data
+        $news = $news->paginate(10);
+
+        return Inertia::render('Admin/NewsController', [
+            'auth' => [
+                'admin' => $admin
+            ],
+            'data' => $news
+        ]);
+    }
+
+
+    public function editNews(News $news, Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        return Inertia::render('Admin/EditNews', [
+            'auth' => [
+                'admin' => $admin
+            ],
+            'news' => $news->find($request->id)
+        ]);
+    }
+
+    public function updateNews(News $news, Request $request)
+    {
+        // Validasi data yang diterima dari front end
+        $updateData = [];
+        if ($request->title !== null) {
+            $updateData['title'] = $request->title;
+        }
+        if ($request->description !== null) {
+            $updateData['description'] = $request->description;
+        }
+        if ($request->category !== null) {
+            $updateData['category'] = $request->category;
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('/public/images', $imageName);
+
+            $updateData['foto'] = $imageName;
+        }
+
+        News::where('id', $request->id)->update($updateData);
+
+        return redirect()->route('news.control')->with('message', 'Update Berita Berhasil');
+    }
+
+    public function deleteNews(Request $request)
+    {
+        $news = News::find($request->id);
+        $news->delete();
+
+        return redirect()->back();
+    }
+    // end news controller
 }
