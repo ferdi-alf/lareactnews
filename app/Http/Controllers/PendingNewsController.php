@@ -20,7 +20,7 @@ class PendingNewsController extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2040',
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
-                'category' => 'required|string|max:255',
+                'category' => 'required|string|max:15',
             ],
             [
                 'image.required' => 'Berita wajib memiliki gambar',

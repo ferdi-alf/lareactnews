@@ -50,6 +50,10 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/news/edit/id/{id}', [AdminController::class, 'editNews'])->name('edit.news');
     Route::post('/news/update', [AdminController::class, 'updateNews'])->name('update.news');
     Route::delete('/news/delete/{id}', [AdminController::class, 'deleteNews'])->name('delete.news');
+
+    // nees insert 
+    Route::get('/news-insert', [AdminController::class, 'insert'])->name('news.insert');
+    Route::post('post/news', [AdminController::class, 'postNews'])->name('post.news');
 });
 
 // middleware user

@@ -268,4 +268,53 @@ class AdminController extends Controller
         return redirect()->back();
     }
     // end news controller
+
+    // news insert
+    public function insert()
+    {
+        $admin = Auth::guard('admin')->user();
+        return Inertia::render('Admin/NewsInsert', [
+            'auth' => [
+                'admin' => $admin
+            ]
+        ]);
+    }
+
+    public function postNews(Request $request)
+    {
+        $validasi = $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2040',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category' => 'required|max:15'
+        ], [
+            'image.required' => 'berita harus memiliki gambar',
+            'image.image' => 'format gambar tidak cocok',
+            'image.mimes' => 'format gambar hanya boleh jpg, jpeg, png, webp',
+            'image.max' => 'ukuran file gambar terlalu tinggi',
+            'title.required' => 'title tidak boleh kosong',
+            'title.max' => 'title melebihi batas 255 karakter',
+            'description.required' => 'description berita tak boleh kosong',
+            'category.required' => 'category tak boleh kosong',
+            'category.max' => 'category melebihi batas 15 karakter'
+        ]);
+
+        $admin = Auth::guard('admin')->user();
+        $post = new News();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $name);
+            $post->foto = $name;
+        }
+
+        $post->title = $validasi['title'];
+        $post->description = $validasi['description'];
+        $post->category = $validasi['category'];
+        $post->author = $admin->name;
+        $post->save();
+
+        return redirect()->back();
+    }
+    // end news insert
 }

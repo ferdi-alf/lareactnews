@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 export default function FormNews(props) {
     console.log("formprops: ", props)
 
-    const [showCate, setShowCate] = useState(false);
 
     const [image, setImage] = useState('');
     const [title, setTitle] = useState('');
@@ -122,7 +121,7 @@ export default function FormNews(props) {
                             <option disabled selected>pilih category</option>
                             <option value="politics">Politics</option>
                             <option value="technology">Technology</option>
-                            <option value="business">Business and Finance</option>
+                            <option value="business">Business</option>
                             <option value="entertainment">Entertainment</option>
                             <option value="sports">Sports</option>
                             <option value="health">Health</option>
