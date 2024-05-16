@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NewsCollection;
 use App\Models\News;
 use App\Models\User;
 use Inertia\Inertia;
@@ -12,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\NewsCollection;
 
 class AdminController extends Controller
 {
@@ -81,11 +82,12 @@ class AdminController extends Controller
 
     public function addAdmin(Request $request)
     {
+
         $validate = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8',
-            'confirmPassword' => 'required|same:password'
+            'confirmPassword' => 'required|same:password|min:8'
         ], [
             'name.required' => 'nama tidak boleh kosong',
             'email.required' => 'email tidak boleh kosong',
@@ -99,10 +101,10 @@ class AdminController extends Controller
         $postAdmin = new Admin();
         $postAdmin->name = $validate['name'];
         $postAdmin->email = $validate['email'];
-        $postAdmin->password = $validate['password'];
+        $postAdmin->password = Hash::make($validate['password']);
         $postAdmin->save();
 
-        return redirect()->back()->withErrors(['berhasil menambah data admin']);
+        return redirect()->route('data.admin');
     }
     // end handle admin Data
 
@@ -142,6 +144,7 @@ class AdminController extends Controller
     }
     public function addUser(Request $request)
     {
+
         $validasi = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
@@ -317,4 +320,59 @@ class AdminController extends Controller
         return redirect()->back();
     }
     // end news insert
+
+    // settings
+    public function settings()
+    {
+        $admin = Auth::guard('admin')->user();
+        return Inertia::render('Admin/Settings', [
+            'auth' => [
+                'admin' => $admin
+            ],
+        ]);
+    }
+
+    public function updateAdmin(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        // Validasi input
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255|unique:admins,email,' . Auth::guard('admin')->id(),
+            'oldPassword' => 'required_with:newPassword',
+            'newPassword' => 'min:8|nullable',
+            'confirmNewPassword' => 'required_with:newPassword|same:newPassword'
+        ], [
+            'oldPassword.required_with' => 'password lama wajib diisi',
+            'newPassword.min' => 'password baru harus minimal 8 karakter',
+            'confirmNewPassword.required_with' => 'konfirmasi password wajib diisi',
+            'confirmNewPassword.same' => 'konfirmsi password harus sama dengan password baru yang ingin di masukan'
+        ]);
+
+        $update = [];
+
+        if ($request->name !== null) {
+            $update['name'] = $request->name;
+        }
+
+        if ($request->email !== null) {
+            $update['email'] = $request->email;
+        }
+
+        // Check if the provided password matches the admin's password
+        if (!Hash::check($request->oldPassword, $admin->password)) {
+            return back()->withErrors(['oldPassword' => 'password salah, harap masukan password dengan benar sebelum mengganti']);
+        }
+        if ($request->newPassword !== null) {
+            $update['password'] = Hash::make($request->newPassword);
+        }
+
+
+        if (!empty($update)) {
+            Admin::where('id', Auth::guard('admin')->user()->id)->update($update);
+        }
+
+        return redirect()->back()->with('status', 'Admin info updated successfully.');
+    }
+    // end settings
 }

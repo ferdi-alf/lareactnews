@@ -54,6 +54,10 @@ Route::middleware('auth.admin')->group(function () {
     // nees insert 
     Route::get('/news-insert', [AdminController::class, 'insert'])->name('news.insert');
     Route::post('post/news', [AdminController::class, 'postNews'])->name('post.news');
+
+    // settings
+    Route::get('/settings', [AdminController::class,  'settings'])->name('settings');
+    Route::post('/update/data/admin', [AdminController::class, 'updateAdmin'])->name('update.data.admin');
 });
 
 // middleware user

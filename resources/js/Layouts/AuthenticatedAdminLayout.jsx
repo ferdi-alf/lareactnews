@@ -114,7 +114,7 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                     <p>News Insert</p>
                                 </Link>
                                 <div className='text-start w-full mt-3' style={{ fontWeight: "400", fontFamily: "Ubuntu, sans-serif" }}>Account</div>
-                                <Link className="nav" style={{ marginTop: "4px" }}>
+                                <Link href={route('settings')} className="nav" style={{ marginTop: "4px" }}>
                                     <FontAwesomeIcon icon={faGear} className='icons' />
                                     <p>Settings</p>
                                 </Link>
