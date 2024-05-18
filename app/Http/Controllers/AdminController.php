@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\NewsCollection;
 
 class AdminController extends Controller
@@ -84,12 +85,13 @@ class AdminController extends Controller
     {
 
         $validate = $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:admins,name',
             'email' => 'required|email',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|same:password|min:8'
         ], [
             'name.required' => 'nama tidak boleh kosong',
+            'name.unique' => 'Nama sudah digunakan, silakan gunakan nama yang lain',
             'email.required' => 'email tidak boleh kosong',
             'email.email' => 'email tidak valid',
             'password.required' => 'password tidak boleh kosong',
@@ -373,6 +375,33 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('status', 'Admin info updated successfully.');
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+        ], [
+            'password.required' => 'password tidak boleh kosong'
+        ]);
+
+        /** @var \App\Models\Admin $admin */
+        $admin = Auth::guard('admin')->user();
+
+        if (!Hash::check($request->password, $admin->password)) {
+            return back()->withErrors(['password' => 'password salah, masukan password dengan benar']);
+        }
+
+        $admin->delete();
+        return Redirect::to('/');
+    }
+
+    public function logout()
+    {
+        /** @var \App\Models\Admin $admin */
+        Auth::guard('admin')->logout();
+
+        return Redirect::to('/');
     }
     // end settings
 }

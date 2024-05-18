@@ -1541,6 +1541,39 @@ textarea {
 }
 /* end view pending */
 
+/* settings */
+.ug{
+    width: 70%;
+}
+
+.dgr {
+    height: 40px;
+    background-color: rgb(253, 46, 46);
+    border-radius: 6px;
+    font-weight: bold; 
+    margin-top: 10px;
+    width: 150px;
+}
+
+.dgr:hover{
+    background-color: rgb(229, 16, 16);
+}
+
+.mdl{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.735);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.mdl form{
+    width: 70%;
+}
+/* end settings */
+
 @media (max-width:882px) {
     .content.active .cont {
         width: 76%;
@@ -1571,6 +1604,12 @@ textarea {
 
     .box-modal{
         width: 55%;
+    }
+}
+
+@media (mx-width:722px){
+    .dgr{
+        width: 50%;
     }
 }
 
@@ -1607,12 +1646,17 @@ textarea {
         height: 360px;
         margin-top: 30px;
     }
+
+    .ug{
+        width: 100%;
+    }
 }
 
 @media(max-width:500px) {
     .box-modal{
         width:80%;
     }
+   
 }
 
 @media (max-width:390px) {

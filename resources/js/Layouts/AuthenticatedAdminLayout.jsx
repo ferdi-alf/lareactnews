@@ -2,9 +2,11 @@ import { Head, Link } from '@inertiajs/react';
 import '../../../public/css/style.css'
 import React, { useState } from 'react'
 import Logo from '../../../public/images/360_F_475009987_zwsk4c77x3cTpcI3W1C1LU4pOSyPKaqi (1).jpg'
-import { faList, faGear, faHouse, faNewspaper, faUserSecret, faUser, faAngleDown, faAngleRight, faSatelliteDish, faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket, faList, faGear, faHouse, faNewspaper, faUserSecret, faUser, faAngleDown, faAngleRight, faSatelliteDish, faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Inertia } from '@inertiajs/inertia';
+
 
 export default function AuthenticatedAdmin({ admin, children }) {
 
@@ -30,6 +32,11 @@ export default function AuthenticatedAdmin({ admin, children }) {
     const filteredRoutes = routes.filter(route =>
         route.name.toLowerCase().includes(searchValue.toLowerCase())
     )
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        Inertia.post(route('logout.admin'));
+    };
 
     return (
         <>
@@ -117,6 +124,10 @@ export default function AuthenticatedAdmin({ admin, children }) {
                                 <Link href={route('settings')} className="nav" style={{ marginTop: "4px" }}>
                                     <FontAwesomeIcon icon={faGear} className='icons' />
                                     <p>Settings</p>
+                                </Link>
+                                <Link href="" onClick={handleLogout} className="nav" style={{ marginTop: "4px" }}>
+                                    <FontAwesomeIcon icon={faRightFromBracket} className='icons' />
+                                    <p>Logout</p>
                                 </Link>
                             </ul>
 

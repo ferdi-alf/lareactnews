@@ -58,6 +58,8 @@ Route::middleware('auth.admin')->group(function () {
     // settings
     Route::get('/settings', [AdminController::class,  'settings'])->name('settings');
     Route::post('/update/data/admin', [AdminController::class, 'updateAdmin'])->name('update.data.admin');
+    Route::delete('/settings/delete', [AdminCOntroller::class, 'deleteAccount'])->name('delete.account');
+    Route::post('/logout/admin', [AdminController::class, 'logout'])->name('logout.admin');
 });
 
 // middleware user
