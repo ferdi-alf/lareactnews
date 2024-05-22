@@ -17,7 +17,15 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $newsData = new  NewsCollection(News::OrderByDesc('id')->paginate(10));
+        $newsData = new  NewsCollection(News::where('category', 'politics')->OrderByDesc('id')->paginate(5));
+
+        $inter = new NewsCollection(
+            News::where('category', 'international')
+                ->orderByDesc('id')
+                ->take(7)
+                ->get()
+        );
+
 
         $waktu = Carbon::now()->subHours(24);
         $newNewsData = News::where('created_at', '>', $waktu)->get();
@@ -30,39 +38,39 @@ class NewsController extends Controller
             'description' => 'Selamat datang di portal berita cuy universe',
             'news' => $newsData,
             'views' => $views,
-            'newNews' => $newNews
+            'newNews' => $newNews,
+            'interNews' => $inter
         ]);
     }
 
 
     // view berita 
-    public function view($id)
+    public function view(Request $request, $id)
     {
+        if ($request->isMethod('post')) {
+            $idBerita = $id;
+            $ipAddress = $request->ip();
+
+            $existingView = View::where('id_berita', $idBerita)
+                ->where('ip_address', $ipAddress)
+                ->first();
+
+            if (!$existingView) {
+                View::create([
+                    'id_berita' => $idBerita,
+                    'ip_address' => $ipAddress
+                ]);
+
+                $totalView = View::where('id_berita', $idBerita)->count();
+                $news = News::find($idBerita);
+                $news->views = $totalView;
+                $news->save();
+            }
+        }
+
         $news = News::findOrFail($id);
         return Inertia::render('ViewBerita', ['viewBerita' => $news]);
     }
-
-    public function addViews(Request $request)
-    {
-        $idBerita = $request->input('id_berita');
-        $ipAddress = $request->ip();
-
-        $existingView = View::where('id_berita', $idBerita)
-            ->where('ip_address', $ipAddress)
-            ->first();
-
-        if (!$existingView) {
-            View::create([
-                'id_berita' => $idBerita,
-                'ip_address' => $ipAddress
-            ]);
-
-            $news = News::find($idBerita);
-            $news->views += 1;
-            $news->save();
-        }
-    }
-    // end view
 
 
     // dashboard
@@ -111,8 +119,6 @@ class NewsController extends Controller
             'pesanAdmin' => $allPesan
         ]);
     }
-
-
     // form berita
     public function formnews()
     {
@@ -142,8 +148,5 @@ class NewsController extends Controller
         ]);
     }
     // end masuk ke mynews
-
-
-    // masuk ke sesi hapus data
 
 }

@@ -1,18 +1,36 @@
+import Slider from "react-slick";
+import React from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const isImage = (news) => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false
+    }
+
     return (
-        <div className="carousel w-full">
-            {news.map((data, i) => (
-                <div key={i} id={`slide${i + 1}`} className="carousel-item rounded-lg  relative w-full">
-                    <img src={`/storage/images/${data.foto}`} className=" im" />
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href={`#slide${(i === news.length - 1) ? 1 : i + 2}`} className="btn btn-circle">❮</a>
-                        <a href={`#slide${(i === news.length - 1) ? 1 : i + 2}`} className="btn btn-circle">❯</a>
-                    </div>
+        <div className="slider-container bg-slate-500">
+            <Slider {...settings}>
+                <div>
+                    <h3>1</h3>
                 </div>
-            ))}
+                <div>
+                    <h3>2</h3>
+                </div>
+                <div>
+                    <h3>3</h3>
+                </div>
+                <div>
+                    <h3>4</h3>
+                </div>
+
+            </Slider>
         </div>
-
-
     )
 
 }

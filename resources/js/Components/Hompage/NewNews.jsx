@@ -8,7 +8,7 @@ const isNewNews = (batasBerita) => {
                 </figure>
 
                 <div className="cb">
-                    <h2 className="cd text-end">
+                    <h2 className="cd text-end description">
                         {data.title}
                         <div className="badge badge-secondary">NEW</div>
                     </h2>

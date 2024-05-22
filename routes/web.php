@@ -13,10 +13,8 @@ use App\Http\Controllers\PendingNewsController;
 
 // index berita
 Route::get('/', [NewsController::class, 'index']);
-//increment view
-Route::post('/add-view', [NewsController::class, 'addViews']);
 // view berita
-Route::get('berita/view/id/{id}', [NewsController::class, 'view'])
+Route::match(array('GET', 'POST'), '/berita/view/id/{id}', [NewsController::class, 'view'])
     ->name('view.berita');
 // end index berita
 

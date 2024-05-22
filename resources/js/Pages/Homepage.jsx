@@ -9,9 +9,12 @@ import SlideImage from '@/Components/Hompage/SlideImage';
 import Logo from '../../../public/images/logo-portal.png'
 import SkeletonLoader from '@/Components/SkeletonLoader';
 import { useState, useEffect } from 'react';
+import InterNews from '@/Components/Hompage/InterNews';
+
 
 
 export default function Homepage(props) {
+    console.log(props)
 
     const [loading, setLoading] = useState(true)
 
@@ -71,7 +74,9 @@ export default function Homepage(props) {
 
             <div className='berita-lainnya'>
                 <div className="newslist">
-                    <h1>Berita Lainnya</h1>
+                    <div className="divider">
+                        <p>Berita Lainnya</p>
+                    </div>
                     {/* Cara mengambil data dari database */}
                     {loading && <SkeletonLoader className="skeleton-newslist" />}
 
@@ -80,6 +85,13 @@ export default function Homepage(props) {
                             < NewsList news={props.news.data} />
                         </>
                     )}
+                </div>
+                <div className="inter">
+                    <div className="sas">
+
+                        <h1>Seputar Internatinal</h1>
+                    </div>
+                    <InterNews data={props.interNews.data} />
                 </div>
             </div>
         </div>

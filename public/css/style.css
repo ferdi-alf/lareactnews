@@ -39,9 +39,10 @@ select {
 
 .berita-lainnya {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     width: 100%;
-    align-items: center;
+    column-gap: 15px;
+    align-items: start;
     padding: 10px;
 }
 
@@ -148,6 +149,22 @@ select {
     text-align: end;
     padding-right: 7px;
     margin-right: 7px;
+}
+
+.cb .description{
+    color: rgb(2, 112, 255);
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    width: 85%;
+    justify-content: end;
+    display: flex;
+    flex-direction: column;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cardD .author {
@@ -278,7 +295,8 @@ select {
     padding: 0 10px 0 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: end;
 }
 
 
@@ -294,13 +312,14 @@ select {
     display: flex;
     align-items: center;
     width: 100%;
-    color: white;
     margin-bottom: 35px;
 }
+
 
 .divider p {
     border: 2px solid #ef33dc;
     padding: 5px;
+    color:gray;
     border-radius: 10px;
 }
 
@@ -311,6 +330,33 @@ select {
     padding: 3px;
     background-color: #ef33dc;
     margin: 1px;
+}
+
+ .sas{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align:start;
+    width: 100%;
+    color: grey;
+    margin-bottom: 20px;
+}
+
+ .sas h1{
+    border: 1px solid #ef33dc;
+    padding: 5px;
+    color: gray;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+  .sas::after{
+    width: 100%;
+    content: '';
+    padding: 3px;
+    background-color: #ef33dc;
+    flex:1;
+    margin:2px;
 }
 
 
@@ -1573,6 +1619,182 @@ textarea {
     width: 70%;
 }
 /* end settings */
+
+/* international */
+.inter{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gatau{
+    width: 100%;
+    background-color: white;
+    padding: 5px;
+}
+
+.inter-container.wide{
+    width: 100%;
+    padding: 10px;
+}
+
+.inter-container.wide .cardIn{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap:wrap;
+    width: 100%;
+    border-bottom:1px solid gray;
+    margin-bottom:9px;
+}
+
+.gatau .inter-container.wide .cardIn figure{
+    width: 70%;
+}
+
+.inter-container.wide .cardIn .inter-title{
+    width: 25%;
+    color: rgb(2, 112, 255);
+    word-wrap: break-word; 
+    overflow: hidden;
+    font-size: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.inter-container.wide .cardIn .inter-title:hover{
+    text-decoration: underline;
+}
+
+.inter-container.wide .cardIn .description {
+    width: 98%;
+    color: #555;
+    font-size: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+.inter-container.wide .cardIn .description:hover{
+    text-decoration: underline;
+}
+
+.inter-container.wide .cardIn .inter-title .badge   {
+    display: none;
+}
+
+.inter-container.wide .cardIn .author{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: end;
+    column-gap: 11px;
+    color: #555;
+    margin-top: 10px;
+    padding-bottom:5px;
+}
+
+.inter-container.wide .cardIn .author .carbon{
+    font-size: 13.4px;
+    color: #777777;
+}
+
+/* index == 1 */
+.tall{
+    width: 100%;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 18px;
+    column-gap:8px;
+}
+
+.big-tall{
+    width: 47%;
+}
+
+.tall .card-tall{
+    display:flex;
+    width: 100%;
+    height: 115px;
+    column-gap: 12px;
+    justify-content: space-between;
+}
+
+.tall .card-tall figure{
+    width: 35%;
+    height:100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.tall .card-tall figure img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.tall .card-tall .author{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 11px;
+}
+
+.tall .card-tall .author .carbon{
+    font-weight: 500;
+    font-size: 11px;
+}
+
+.tall .card-tall .author .badge{
+    font-size:10px;
+}
+
+.card-tall .cardIn{
+    width: 70%;
+}
+
+.tall .card-tall .inter-title{
+    display: flex;
+    column-gap: 8px;
+}
+
+.tall .card-tall .inter-title p{
+    width: 90%;
+    color: rgb(2, 112, 255);
+    word-wrap: break-word; 
+    overflow: hidden;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.card-tall .cardIn .description{
+    width: 98%;
+    color: #555;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+/* end interntional */
 
 @media (max-width:882px) {
     .content.active .cont {

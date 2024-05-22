@@ -12,29 +12,22 @@ function HumanReadableTime({ timestamp }) {
 const isNews = (news) => {
     console.log('berita: ', news);
 
-    const handleClick = (idBerita) => {
-
-        Inertia.post('/add-view', {
-            id_berita: idBerita,
-        }).then(response => {
-            // Handle response
-        }).catch(error => {
-            // Handle error
-        });
+    const handleViewNews = (id) => {
+        Inertia.post(route('view.berita', { id: id }))
     }
 
     return news.map((data, i) => {
         return (
             <div key={i}>
 
-                <Link onClick={() => handleClick(data.id)} href={route('view.berita', { id: data.id })} className="cardsl">
+                <Link onClick={() => handleViewNews(data.id)} href={route('view.berita', { id: data.id })} className="cardsl">
                     <figure>
                         <img src={`/storage/images/${data.foto}`} alt="Shoes" />
                     </figure>
                     <div className="cardD">
                         <div className="title">
                             <div className="titleT ">{data.title}</div>
-                            <div className="badge view ">
+                            <div className="badge view gap-1">
                                 <FontAwesomeIcon icon={faEye} style={{ fontSize: "10px" }} />
                                 {data.views}
                             </div>
