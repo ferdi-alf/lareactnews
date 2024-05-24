@@ -17,12 +17,26 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $newsData = new  NewsCollection(News::where('category', 'politics')->OrderByDesc('id')->paginate(5));
+        // politik
+        $newsData = new  NewsCollection(
+            News::where('category', 'politics')
+                ->OrderByDesc('id')
+                ->paginate(5)
+        );
 
+        // international
         $inter = new NewsCollection(
             News::where('category', 'international')
                 ->orderByDesc('id')
                 ->take(7)
+                ->get()
+        );
+
+        // entertaiment
+        $enter = new NewsCollection(
+            News::where('category', 'entertainment')
+                ->orderByDesc('id')
+                ->take(5)
                 ->get()
         );
 
@@ -39,7 +53,8 @@ class NewsController extends Controller
             'news' => $newsData,
             'views' => $views,
             'newNews' => $newNews,
-            'interNews' => $inter
+            'interNews' => $inter,
+            'entertainment' => $enter
         ]);
     }
 

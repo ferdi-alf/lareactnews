@@ -10,6 +10,8 @@ import Logo from '../../../public/images/logo-portal.png'
 import SkeletonLoader from '@/Components/SkeletonLoader';
 import { useState, useEffect } from 'react';
 import InterNews from '@/Components/Hompage/InterNews';
+import EnterNews from '@/Components/Hompage/EnterNews';
+
 
 
 
@@ -89,9 +91,15 @@ export default function Homepage(props) {
                 <div className="inter">
                     <div className="sas">
 
-                        <h1>Seputar Internatinal</h1>
+                        <h1>Seputar International</h1>
                     </div>
                     <InterNews data={props.interNews.data} />
+                </div>
+                <div className="enter">
+                    <div className="sas">
+                        <h1>Seputar Entertainment</h1>
+                    </div>
+                    <EnterNews data={props.entertainment.data} />
                 </div>
             </div>
         </div>

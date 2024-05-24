@@ -10,25 +10,19 @@ const isImage = (news) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        arrows: false
+        arrows: false,
+        autoplay: true,
+        autoplaySpeed: 3000,
     }
 
     return (
-        <div className="slider-container bg-slate-500">
+        <div className="slider-container">
             <Slider {...settings}>
-                <div>
-                    <h3>1</h3>
-                </div>
-                <div>
-                    <h3>2</h3>
-                </div>
-                <div>
-                    <h3>3</h3>
-                </div>
-                <div>
-                    <h3>4</h3>
-                </div>
-
+                {news.map((data, i) => (
+                    <div className="slide" key={i}>
+                        <img src={`/storage/images/${data.foto}`} alt="Shoes" />
+                    </div>
+                ))}
             </Slider>
         </div>
     )

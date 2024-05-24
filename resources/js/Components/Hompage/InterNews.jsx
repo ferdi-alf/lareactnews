@@ -11,13 +11,18 @@ function HumanReadableTime({ timestamp }) {
 }
 
 const InterNews = ({ data }) => {
+
+    const handleViewNews = (id) => {
+        Inertia.post(route('view.berita', { id: id }))
+    }
+
     return (
         <div className="gatau">
             {/* Kontainer untuk item dengan indeks 0 */}
             <div className="inter-container wide">
                 {data.length > 0 && (
                     <div key={0}>
-                        <Link href={route('view.berita', { id: data[0].id })} className="cardIn">
+                        <Link onClick={() => handleViewNews(data.id)} href={route('view.berita', { id: data[0].id })} className="cardIn">
                             <figure>
                                 <img src={`/storage/images/${data[0].foto}`} alt="Shoes" />
                             </figure>
@@ -50,7 +55,7 @@ const InterNews = ({ data }) => {
             <div className="tall">
                 {data.slice(1).map((news, i) => (
                     <div key={i + 1} className="big-tall">
-                        <Link href={route('view.berita', { id: news.id })} className="card-tall">
+                        <Link onClick={() => handleViewNews(news.id)} href={route('view.berita', { id: news.id })} className="card-tall">
                             <figure>
                                 <img src={`/storage/images/${news.foto}`} alt="Shoes" />
                             </figure>
