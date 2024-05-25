@@ -21,7 +21,7 @@ const isEnterNews = (data) => {
         return (
             <div key={i}>
 
-                <Link onClick={() => handleViewNews(news.id)} href={route('view.berita', { id: news.id })} className="cardsl">
+                <Link onClick={() => handleViewNews(news.id)} href={route('view.berita', { id: news.id })} className="cardsl h">
                     <figure>
                         <img src={`/storage/images/${news.foto}`} alt="Shoes" />
                     </figure>

@@ -64,10 +64,13 @@ select {
 .cardsl {
     display: flex;
     width: 100%;
-    background-color: aliceblue;
-    box-shadow: 2px 3px;
+    background-color: white;
     border-radius: 12px;
     height: 130px;
+}
+
+.cardsl.h{
+    height: 170px;
 }
 
 
@@ -1820,6 +1823,107 @@ textarea {
     row-gap: 12px;
 }
 /* end entertaiment */
+
+/* health */
+.health{
+    width:45%;
+    display:flex;
+    flex-direction:column;
+    background-color: #f1f1f1;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-health{
+    width: 90%;
+}
+
+.card-3 figure{
+    height:130px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-3 figure img {
+    width: 100%;
+    position: relative;
+    object-fit: cover;
+    object-position: center;
+    top: 0;
+    left: 0;
+}
+
+.ini {
+    width:100%
+}
+
+.box-helth{
+    row-gap: 12px;
+}
+
+.card-desc .title{
+    color: rgb(2, 112, 255);
+    word-wrap: break-word; 
+    overflow: hidden;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.card-desc .title:hover{
+    text-decoration: underline;
+}
+
+.card-desc .desc{
+    color: #555;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+.card-desc .desc:hover{
+    text-decoration: underline;
+}
+
+.flex .carbon p {
+    font-weight: 500;
+    font-size: 11px;
+    color:#555;
+}
+
+.badge.badge-secondary{
+    color:white;
+}
+
+.slider-container.he {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 27px 23px 27px;
+    border: 5px solid white;
+    background-color: #f1f1f1;
+    color:#555;
+}
+
+.card-slide{
+   margin-right: 12px;
+   display:flex;
+   column-gap: 12px;
+}
+
+.card-slide figure{
+    width: 100%;
+    overflow:hidden;
+    height:80px;
+}
+/* end health */
 
 @media (max-width:882px) {
     .content.active .cont {

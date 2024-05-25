@@ -1,0 +1,32 @@
+   <div className="w-full flex flex-col gap-y-3 items-center justify-center">
+            <div className="flex card-health flex-col justify-center gap-y-3 items-center">
+                <div className="ini flex flex-col justify-center gap-y-3 items-center">
+                    {data.slice(0, 2).map((news, i) => (
+                        <div key={i} className="w-full">
+                            <Link className="bg-white card-3 w-full flex flex-col justify-around box-helth items-center p-3">
+                                <figure>
+                                    <img src={`/storage/images/${news.foto}`} alt="Shoes" />
+                                </figure>
+                                <div className="card-desc gap-y-2 flex flex-col">
+                                    <p className="title">{news.title}</p>
+                                    <p className="desc">{news.description}</p>
+                                </div>
+                                <div className="w-full flex justify-around items-center">
+                                    <p className="carbon">
+                                        <HumanReadableTime timestamp={news.created_at} />
+                                    </p>
+                                    <div className="flex justify-between gap-x-2 items-center flex-nowrap">
+                                        <div className="badge bg-transparent view gap-1" style={{ color: "#555" }}>
+                                            <FontAwesomeIcon icon={faEye} style={{ fontSize: "10px" }} />
+                                            {news.views}
+                                        </div>
+                                        <div style={{ color: "#555" }} className="badge name bg-white">{news.author}</div>
+                                        <div className="badge badge-secondary">{news.category}</div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            </div>

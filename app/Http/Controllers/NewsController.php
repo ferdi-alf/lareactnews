@@ -40,6 +40,13 @@ class NewsController extends Controller
                 ->get()
         );
 
+        // Health
+        $health = new NewsCollection(
+            News::where('category', 'health')
+                ->orderByDesc('id')
+                ->take(9)
+                ->get()
+        );
 
         $waktu = Carbon::now()->subHours(24);
         $newNewsData = News::where('created_at', '>', $waktu)->get();
@@ -47,14 +54,23 @@ class NewsController extends Controller
 
         $views = View::all();
 
+        // auth
+        $user = Auth::guard()->user();
+        $admin = Auth::guard('admin')->user();
+
         return Inertia::render('Homepage', [
+            'auth' => [
+                'user' => $user,
+                'admin' => $admin
+            ],
             'title' => 'Cuyy Portal',
             'description' => 'Selamat datang di portal berita cuy universe',
             'news' => $newsData,
             'views' => $views,
             'newNews' => $newNews,
             'interNews' => $inter,
-            'entertainment' => $enter
+            'entertainment' => $enter,
+            'health' => $health
         ]);
     }
 

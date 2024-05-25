@@ -1,8 +1,7 @@
 import NewsList from '@/Components/Hompage/NewsList';
 import Navbar from '@/Components/Navbar';
-import { Link, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import React from 'react';
-import Paginator from '@/Components/Hompage/Paginator';
 import BeritaTerbaru from '@/Components/Hompage/NewNews'
 import '../../../public/css/style.css'
 import SlideImage from '@/Components/Hompage/SlideImage';
@@ -11,8 +10,7 @@ import SkeletonLoader from '@/Components/SkeletonLoader';
 import { useState, useEffect } from 'react';
 import InterNews from '@/Components/Hompage/InterNews';
 import EnterNews from '@/Components/Hompage/EnterNews';
-
-
+import HealthNews from '@/Components/Hompage/HealthNews';
 
 
 export default function Homepage(props) {
@@ -100,6 +98,12 @@ export default function Homepage(props) {
                         <h1>Seputar Entertainment</h1>
                     </div>
                     <EnterNews data={props.entertainment.data} />
+                </div>
+                <div className="health">
+                    <div className="divider">
+                        <p>Health</p>
+                    </div>
+                    <HealthNews data={props.health.data} />
                 </div>
             </div>
         </div>
