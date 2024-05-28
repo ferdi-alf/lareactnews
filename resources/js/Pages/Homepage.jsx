@@ -98,6 +98,11 @@ export default function Homepage(props) {
                         <h1>Seputar Entertainment</h1>
                     </div>
                     <EnterNews data={props.entertainment.data} />
+                    <div className="random flex w-full justify-center items-center flex-col">
+                        <div className="sas ra">
+                            <h1>untuk anda</h1>
+                        </div>
+                    </div>
                 </div>
                 <div className="health">
                     <div className="divider">

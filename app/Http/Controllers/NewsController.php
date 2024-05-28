@@ -44,7 +44,16 @@ class NewsController extends Controller
         $health = new NewsCollection(
             News::where('category', 'health')
                 ->orderByDesc('id')
-                ->take(9)
+                ->take(10)
+                ->get()
+        );
+
+        // random
+        $randomCategory = ['technology', 'sports', 'environment'];
+        $random = new NewsCollection(
+            News::whereIn('category', $randomCategory)
+                ->orderByDesc('id')
+                ->take(12)
                 ->get()
         );
 
@@ -70,7 +79,8 @@ class NewsController extends Controller
             'newNews' => $newNews,
             'interNews' => $inter,
             'entertainment' => $enter,
-            'health' => $health
+            'health' => $health,
+            'randomNews' => $random,
         ]);
     }
 

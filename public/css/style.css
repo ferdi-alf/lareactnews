@@ -361,6 +361,19 @@ select {
     margin-bottom: 20px;
 }
 
+.sas.ra::after{
+    width: 100%;
+    content: '';
+    padding: 1px;
+    background-color: hsl(306, 85%, 57%);
+    flex:1;
+    margin:2px;
+}
+
+.sas.ra h1{
+    border: none;
+}
+
  .sas h1{
     border: 1px solid #ef33dc;
     padding: 5px;
@@ -1838,8 +1851,8 @@ textarea {
     width: 90%;
 }
 
-.card-3 figure{
-    height:130px;
+.card-3 figure {
+    height: 130px;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -1847,12 +1860,14 @@ textarea {
 
 .card-3 figure img {
     width: 100%;
-    position: relative;
+    height: 100%;
     object-fit: cover;
     object-position: center;
     top: 0;
     left: 0;
+    position: absolute; /* Ensure the img is positioned absolutely within the figure */
 }
+
 
 .ini {
     width:100%
@@ -1910,6 +1925,7 @@ textarea {
     border: 5px solid white;
     background-color: #f1f1f1;
     color:#555;
+    border-radius:7px;
 }
 
 .card-slide{
