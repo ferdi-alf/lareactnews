@@ -7,7 +7,6 @@ import Swal from 'sweetalert2'
 
 
 export default function FormNews(props) {
-    console.log("formprops: ", props)
 
 
     const [image, setImage] = useState('');

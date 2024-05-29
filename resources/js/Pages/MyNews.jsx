@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 
 export default function MyNews(props) {
-    console.log(props)
 
     const newsData = props.news.data || [];
     const [loading, setLoading] = useState(true);

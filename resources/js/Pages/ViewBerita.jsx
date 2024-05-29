@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 export default function ViewBerita(props) {
-    console.log('ini: ', props)
     return (
         <div>
             <h1>{props.viewBerita.title}</h1>

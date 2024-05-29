@@ -1,5 +1,4 @@
 const isNewNews = (batasBerita) => {
-    console.log('batas: ', batasBerita)
     return batasBerita.map((data, i) => {
         return (
             <div key={i} className="cardsl side">

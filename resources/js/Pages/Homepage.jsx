@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import InterNews from '@/Components/Hompage/InterNews';
 import EnterNews from '@/Components/Hompage/EnterNews';
 import HealthNews from '@/Components/Hompage/HealthNews';
+import ForYou from '@/Components/Hompage/ForYou';
 
 
 export default function Homepage(props) {
@@ -102,6 +103,7 @@ export default function Homepage(props) {
                         <div className="sas ra">
                             <h1>untuk anda</h1>
                         </div>
+                        <ForYou data={props.randomNews.data}/>
                     </div>
                 </div>
                 <div className="health">

@@ -37,7 +37,7 @@ const isHealthNews = (data) => {
                 <div className="ini flex flex-col justify-center gap-y-3 items-center">
                     {data.slice(0, 2).map((news, i) => (
                         <div key={i} className="w-full">
-                            <Link className="bg-white card-3 w-full flex flex-col justify-around box-helth items-center p-3">
+                            <Link onClick={() => handleViewNews(news.id)} href={route('view.berita', { id: news.id })} className="bg-white card-3 w-full flex flex-col justify-around box-helth items-center p-3">
                                 <figure>
                                     <img src={`/storage/images/${news.foto}`} alt="Shoes" />
                                 </figure>
@@ -67,7 +67,7 @@ const isHealthNews = (data) => {
                 <Slider {...settings} style={{ display: "flex", columnGap: "12px" }}>
                     {data.slice(2, 8).map((news, i) => (
                         <div key={i} className="card-slid">
-                            <Link className=" card-3 w-full flex flex-col justify-around box-helth items-center p-3">
+                            <Link onClick={() => handleViewNews(news.id)} href={route('view.berita', { id: news.id })} className=" card-3 w-full flex flex-col justify-around box-helth items-center p-3">
                                 <figure>
                                     <img src={`/storage/images/${news.foto}`} alt="Shoes" />
                                 </figure>
@@ -97,7 +97,7 @@ const isHealthNews = (data) => {
                 <div className="ini flex flex-col justify-center gap-y-3 items-center">
                     {data.slice(8, 10).map((news, i) => (
                         <div key={i} className="w-full">
-                            <Link className="bg-white card-3 w-full flex flex-col justify-around box-helth items-center p-3">
+                            <Link onClick={() => handleViewNews(news.id)} href={route('view.berita', { id: news.id })} className="bg-white card-3 w-full flex flex-col justify-around box-helth items-center p-3">
                                 <figure>
                                     <img src={`/storage/images/${news.foto}`} alt="Shoes" />
                                 </figure>
