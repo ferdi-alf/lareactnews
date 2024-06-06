@@ -57,6 +57,14 @@ class NewsController extends Controller
                 ->get()
         );
 
+        // lifestyle
+        $lifestyle = new NewsCollection(
+            News::where('category', 'lifestyle')
+            ->orderByDesc('id')
+            ->take(3)
+            ->get()
+        );
+
         $waktu = Carbon::now()->subHours(24);
         $newNewsData = News::where('created_at', '>', $waktu)->get();
         $newNews = new NewsCollection($newNewsData);
@@ -81,6 +89,7 @@ class NewsController extends Controller
             'entertainment' => $enter,
             'health' => $health,
             'randomNews' => $random,
+            'lifestyle' => $lifestyle
         ]);
     }
 

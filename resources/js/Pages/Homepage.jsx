@@ -12,6 +12,7 @@ import InterNews from '@/Components/Hompage/InterNews';
 import EnterNews from '@/Components/Hompage/EnterNews';
 import HealthNews from '@/Components/Hompage/HealthNews';
 import ForYou from '@/Components/Hompage/ForYou';
+import Lifestyle from '@/Components/Hompage/Lifestyle';
 
 
 export default function Homepage(props) {
@@ -103,7 +104,7 @@ export default function Homepage(props) {
                         <div className="sas ra">
                             <h1>untuk anda</h1>
                         </div>
-                        <ForYou data={props.randomNews.data}/>
+                        <ForYou data={props.randomNews.data} />
                     </div>
                 </div>
                 <div className="health">
@@ -111,6 +112,12 @@ export default function Homepage(props) {
                         <p>Health</p>
                     </div>
                     <HealthNews data={props.health.data} />
+                    <div className="life mt-3 w-full p-2 bg-white">
+                        <div className="sas">
+                            <h1>Lifestyle</h1>
+                        </div>
+                        <Lifestyle data={props.lifestyle.data} />
+                    </div>
                 </div>
             </div>
         </div>

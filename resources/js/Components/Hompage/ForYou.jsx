@@ -10,7 +10,6 @@ function HumanReadableTime({ timestamp }) {
 }
 
 const isForYou = (data) => {
-    console.log('data: ', data);
 
     const handleViewNews = (id) => {
         Inertia.post(route('view.berita', { id: id }))
@@ -46,7 +45,7 @@ const isForYou = (data) => {
                     </div>
                 </Link>
             ))}
-            <div className="apa">
+            <div className="apa bg-white">
                 {data.slice(3, 10).map((news, i) => (
                     <div className="knn">
                         <Link
