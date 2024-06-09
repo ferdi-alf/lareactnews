@@ -54,7 +54,7 @@ export default function Homepage(props) {
 
             <div className='index flex flex-wrap'>
                 <div className='flex bblr rounded-lg  justify-center flex-col m-5  '>
-                    <SlideImage news={props.news.data} />
+                    <SlideImage news={props.news.data} className="w-full"/>
                     <div className="text-header">
                         <div>
                             <h1 className='mt-4'>Cuyy <span className='text-slate-400'>News</span></h1>
@@ -120,7 +120,9 @@ export default function Homepage(props) {
                     </div>
                 </div>
             </div>
+            <div className="footer w-full bg-white flex justify-center items-center">
+                copyright by <a href="https://github.com/ferdi-alf">ferdi-alf</a>
+            </div>
         </div>
-
     )
 }

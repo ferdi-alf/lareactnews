@@ -887,6 +887,8 @@ textarea {
     .container-fluid .container .card form {
         row-gap: 40px;
     }
+
+    
 }
 
 /* end login mobil */
@@ -2061,6 +2063,17 @@ textarea {
 } */
 /* end lifestyle */
 
+@media (max-width:1024px){
+    .bblr{
+        width: 100%;
+        overflow: hidden;    
+    }
+
+    .bblr.lg{
+        width:100%;
+    }
+}
+
 @media (max-width:882px) {
     .content.active .cont {
         width: 76%;
@@ -2091,6 +2104,14 @@ textarea {
 
     .box-modal{
         width: 55%;
+    }
+
+    .newslist{
+        width:100%;
+    }
+
+    .inter{
+        width:100%;
     }
 }
 
@@ -2137,6 +2158,15 @@ textarea {
     .ug{
         width: 100%;
     }
+
+    .tall{
+        display:flex;
+        flex-direction:column;
+    }
+
+    .big-tall{
+        width:100%;
+    }
 }
 
 @media(max-width:500px) {
@@ -2144,6 +2174,13 @@ textarea {
         width:80%;
     }
    
+    .enter{
+        width:100%;
+    }
+
+    .health{
+        width: 100%;
+    }
 }
 
 @media (max-width:390px) {
