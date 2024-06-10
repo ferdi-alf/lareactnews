@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         DB::table('admins')->insert([
-            'name' => 'admin1',
-            'email' => 'admin@gmail.com1',
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
         ]);
     }

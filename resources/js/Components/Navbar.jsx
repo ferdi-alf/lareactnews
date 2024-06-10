@@ -1,8 +1,11 @@
 import { Link } from "@inertiajs/react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 const Navbar = ({ user }) => {
     return (
-        <div className="navbar bg-white">
+        <div className="navbar sticky top-0 bg-white">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl" style={{ color: "#ef33dc" }}>Cuyy <span className="text-slate-400">News</span></a>
             </div>
@@ -10,10 +13,10 @@ const Navbar = ({ user }) => {
                 <div className="form-control">
                     <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" style={{ border: "1px solid gray", backgroundColor: "#f5f2f4" }} />
                 </div>
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div className="dropdown  dropdown-end">
+                    <div tabIndex={0} role="button" className="btn flex flex-col justify-center items-center text-center btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full flex flex-col justify-center items-center text-center">
+                            <FontAwesomeIcon icon={faBars} className="text-lg" />
                         </div>
                     </div>
                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

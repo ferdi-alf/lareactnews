@@ -40,6 +40,7 @@ export default function AddAdmin(props) {
                             <input id='title' onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Nama" className="m-2 f bg-white text" />
                             {errors.name && (
                                 <p className="text-red-500">{errors.name}</p>
+
                             )}
                         </div>
                     </div>

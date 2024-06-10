@@ -165,7 +165,7 @@ class AdminController extends Controller
         $post = new User();
         $post->name = $validasi['name'];
         $post->email = $validasi['email'];
-        $post->password = $validasi['password'];
+        $post->password = Hash::make($validasi['password']);
         $post->save();
 
         return redirect()->route('data.user');
@@ -181,7 +181,7 @@ class AdminController extends Controller
             $update['email'] = $request->email;
         }
         if ($request->password !== null) {
-            $update['password'] = $request->password;
+            $update['password'] = Hash::make($request->password);
         }
 
         User::where('id', $request->id)->update($update);
